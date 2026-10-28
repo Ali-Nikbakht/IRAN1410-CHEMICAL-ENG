@@ -1,0 +1,3137 @@
+<!doctype html>
+<html lang="fa" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ایران ۱۴۱۰ | بازی تعاملی ملی-بین‌المللی برای ساختن آینده</title>
+  <meta name="description" content="ایران ۱۴۱۰ — یک بازی تعاملی تصمیم‌محور برای طراحی آینده انرژی، اقتصاد دریا، آب، اشتغال، پایداری و جامعه؛ مناسب مسابقات و جشنواره‌های علمی ملی و بین‌المللی.">
+  <meta name="theme-color" content="#0a0e1a">
+  <meta property="og:title" content="ایران ۱۴۱۰ | بازی تعاملی برای ساختن آینده">
+  <meta property="og:description" content="پنج سال فرصت داری تا آینده یک منطقه ساحلی را بسازی. یک تجربه آموزشی-رقابتی با گواهی پایان بازی و جدول رتبه‌بندی.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e1a'/%3E%3Ctext x='50' y='62' font-size='46' text-anchor='middle' fill='%233b82f6'%3E%F0%9F%8C%8D%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f1525;
+      --text-primary: #e0e6f0;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --border-color: #1e2d45;
+      --card-bg: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --glass-shadow: rgba(0,0,0,0.4);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f0f4f8;
+      --bg-secondary: #ffffff;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #a0aec0;
+      --border-color: #e2e8f0;
+      --card-bg: rgba(255,255,255,0.7);
+      --glass-border: rgba(0,0,0,0.05);
+      --glass-shadow: rgba(0,0,0,0.08);
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* ========== لودر ========== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-primary);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-logo {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: loaderPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.75; }
+    }
+    .loader-bar {
+      width: 200px;
+      height: 4px;
+      background: var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .loader-fill {
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 10px;
+      animation: loaderSlide 1.2s ease-in-out infinite;
+    }
+    @keyframes loaderSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+
+    /* ========== کنترل‌های سراسری ========== */
+    .global-controls {
+      position: fixed;
+      top: 0.8rem;
+      inset-inline-end: 0.8rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .ctrl-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .ctrl-btn:hover {
+      background: rgba(96,165,250,0.15);
+      border-color: var(--accent-blue);
+      transform: scale(1.1);
+    }
+
+    /* ========== اپلیکیشن ========== */
+    #app {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .screen {
+      display: none;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .screen.active {
+      display: flex;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== صفحه شروع ========== */
+    #start {
+      background: radial-gradient(ellipse at 30% 50%, #121828 0%, #0a0e1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="light"] #start {
+      background: radial-gradient(ellipse at 30% 50%, #e0e7ff 0%, #f0f4f8 100%);
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    [data-theme="light"] .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    }
+
+    /* ========== مکعب‌های سه‌بعدی ========== */
+    .cube-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+    .cube-3d {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      transform-style: preserve-3d;
+      animation: cubeSpin 22s linear infinite;
+      opacity: 0.2;
+    }
+    .cube-3d:nth-child(1) { top: 8%;  inset-inline-start: 5%;  animation-duration: 25s; width: 55px; height: 55px; }
+    .cube-3d:nth-child(2) { top: 70%; inset-inline-end: 8%;   animation-duration: 19s; width: 85px; height: 85px; }
+    .cube-3d:nth-child(3) { top: 40%; inset-inline-start: 85%; animation-duration: 23s; width: 48px; height: 48px; }
+    .cube-3d:nth-child(4) { top: 82%; inset-inline-start: 20%; animation-duration: 28s; width: 65px; height: 65px; }
+    .cube-3d:nth-child(5) { top: 15%; inset-inline-end: 20%;   animation-duration: 17s; width: 95px; height: 95px; }
+
+    @keyframes cubeSpin {
+      0%   { transform: rotateX(0deg)   rotateY(0deg)   rotateZ(0deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+    }
+    .cube-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid rgba(96,165,250,0.3);
+      border-radius: 6px;
+      background: rgba(96,165,250,0.05);
+    }
+    .cube-face:nth-child(1) { transform: translateZ(35px); }
+    .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(35px); }
+    .cube-face:nth-child(3) { transform: rotateY(-90deg) translateZ(35px); }
+    .cube-face:nth-child(4) { transform: rotateY(90deg)  translateZ(35px); }
+    .cube-face:nth-child(5) { transform: rotateX(90deg)  translateZ(35px); }
+    .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(35px); }
+
+    /* ========== ذرات سه‌بعدی ========== */
+    .particles-3d {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle-3d {
+      position: absolute;
+      border-radius: 50%;
+      bottom: -10px;
+      animation: particleFloat linear infinite;
+    }
+    .particle-3d:nth-child(odd) {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      box-shadow: 0 0 15px rgba(96,165,250,0.4);
+    }
+    .particle-3d:nth-child(even) {
+      background: linear-gradient(135deg, #fbbf24, #f472b6);
+      box-shadow: 0 0 15px rgba(244,114,182,0.3);
+    }
+    @keyframes particleFloat {
+      0%   { transform: translateY(0) scale(0); opacity: 0; }
+      10%  { opacity: 0.9; }
+      90%  { opacity: 0.9; }
+      100% { transform: translateY(-110vh) scale(1); opacity: 0; }
+    }
+
+    /* ========== محتوای صفحه شروع ========== */
+    .brand {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .hero {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+    .eyebrow {
+      color: var(--accent-blue);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-size: 4.5rem;
+      font-weight: 900;
+      margin: 0.5rem 0;
+      background: linear-gradient(135deg, #ffffff 30%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    [data-theme="light"] h1 {
+      background: linear-gradient(135deg, #1a202c 30%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h1 span { color: var(--accent-yellow); -webkit-text-fill-color: var(--accent-yellow); }
+    h2 { font-size: 1.7rem; font-weight: 400; color: var(--text-primary); margin-bottom: 1.5rem; }
+    .hero p {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .quick-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+      flex-wrap: wrap;
+    }
+    .quick-stats span {
+      background: rgba(96,165,250,0.08);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border: 1px solid rgba(96,165,250,0.15);
+      transition: all 0.3s ease;
+    }
+    .quick-stats span:hover {
+      background: rgba(96,165,250,0.15);
+      transform: translateY(-2px);
+    }
+    .quick-stats span i { margin-inline-end: 0.4rem; color: var(--accent-blue); }
+
+    /* ========== دکمه‌ها ========== */
+    .btn {
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 35px rgba(59,130,246,0.6);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+    [data-theme="light"] .btn-ghost { background: rgba(0,0,0,0.03); }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    .pulse { animation: pulse 2.5s ease-in-out infinite; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(59,130,246,0.4); }
+      50% { box-shadow: 0 4px 45px rgba(59,130,246,0.8); }
+    }
+
+    .footer-credit {
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    /* ========== شیشه‌ای ========== */
+    .glass {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px var(--glass-shadow);
+    }
+
+    /* ========== پنل‌ها ========== */
+    .panel {
+      border-radius: 30px;
+      padding: 3rem;
+      max-width: 800px;
+      width: 100%;
+    }
+    .panel.narrow { max-width: 750px; }
+    .step {
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .role {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      color: var(--text-primary);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .role:hover {
+      background: rgba(96,165,250,0.08);
+      border-color: var(--accent-blue);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(59,130,246,0.2);
+    }
+    .role-icon { font-size: 2.2rem; margin-bottom: 0.5rem; display: block; }
+    .role strong { display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .role small { color: var(--text-secondary); font-size: 0.75rem; }
+
+    /* ========== صفحه بازی ========== */
+    .game-wrap { width: 100%; max-width: 850px; margin: 0 auto; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 0.8rem; }
+    .topbar b { font-size: 1.1rem; }
+    .topbar small { color: var(--text-secondary); }
+    .topbar-stats { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .btn-mini {
+      padding: 0.4rem 1.1rem;
+      font-size: 0.8rem;
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    .btn-mini:hover { background: rgba(239,68,68,0.25); transform: scale(1.05); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.6rem;
+      margin: 0.8rem 0;
+    }
+    .stat-item {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      padding: 0.6rem 0.4rem;
+      border-radius: 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .stat-item:hover {
+      transform: scale(1.04);
+      border-color: rgba(96,165,250,0.2);
+    }
+    .stat-item .label {
+      color: var(--text-secondary);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .stat-item .value { font-weight: 700; font-size: 1.2rem; margin-top: 0.2rem; }
+    .stat-item .value.high   { color: var(--accent-green); }
+    .stat-item .value.medium { color: var(--accent-yellow); }
+    .stat-item .value.low    { color: var(--accent-red); }
+
+    .progress {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 10px;
+      margin: 0.8rem 0;
+      overflow: hidden;
+    }
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+      background-size: 200% 100%;
+      animation: progressShine 2s linear infinite;
+      border-radius: 10px;
+      transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes progressShine {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .question-card { border-radius: 24px; padding: 2.5rem; margin-top: 1rem; }
+    .question-card h2 { font-size: 1.4rem; margin: 0.5rem 0; }
+    .question-card p { color: var(--text-secondary); line-height: 1.8; margin: 0.8rem 0; }
+
+    .options { display: flex; flex-direction: column; gap: 0.7rem; margin: 1.5rem 0; }
+    .option-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
+      color: var(--text-primary);
+      text-align: start;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .option-btn:hover {
+      background: rgba(96,165,250,0.08);
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.1);
+    }
+    .option-btn.selected {
+      border-color: var(--accent-blue);
+      background: rgba(59,130,246,0.15);
+      transform: scale(1.02);
+    }
+
+    .feedback {
+      background: rgba(96,165,250,0.06);
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-inline-end: 4px solid var(--accent-blue);
+      animation: feedbackSlide 0.5s ease;
+    }
+    @keyframes feedbackSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .feedback-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+    .feedback-header i { color: var(--accent-yellow); font-size: 1.3rem; }
+    .feedback-header h3 { color: var(--accent-blue); font-size: 1rem; }
+    .feedback p { color: var(--text-primary); line-height: 1.8; font-size: 0.92rem; }
+
+    .impact-detail {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .impact-item {
+      font-size: 0.78rem;
+      background: var(--card-bg);
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .impact-item .change.positive { color: var(--accent-green); }
+    .impact-item .change.negative { color: var(--accent-red); }
+
+    .btn-mini.back {
+      background: rgba(59,130,246,0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59,130,246,0.25);
+    }
+    .btn-mini.back:hover:not(:disabled) { background: rgba(59,130,246,0.25); transform: scale(1.05); }
+    .btn-mini:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-mini:disabled:hover { transform: none; }
+
+    .comparison-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .comparison-table { display: flex; flex-direction: column; gap: 0.5rem; }
+    .comparison-row {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.6rem 0.9rem;
+    }
+    .comparison-row.chosen {
+      border-color: var(--accent-blue);
+      background: rgba(59,130,246,0.08);
+    }
+    .comparison-label { font-size: 0.82rem; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .comparison-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .comparison-chips .chip {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+    }
+    [data-theme="light"] .comparison-chips .chip { background: rgba(0,0,0,0.04); }
+    .comparison-chips .chip.positive { color: var(--accent-green); }
+    .comparison-chips .chip.negative { color: var(--accent-red); }
+
+    .hidden { display: none !important; }
+
+    /* ========== صفحه نتیجه ========== */
+    #result { position: relative; overflow: hidden; }
+    .result-card {
+      border-radius: 30px;
+      padding: 3rem;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+    .title-box {
+      background: rgba(96,165,250,0.08);
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+      border: 1px solid rgba(96,165,250,0.1);
+    }
+    .title-box small { color: var(--text-secondary); font-size: 0.75rem; display: block; margin-bottom: 0.3rem; }
+    .title-box strong { font-size: 1.8rem; color: var(--accent-blue); }
+    .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1rem 0; }
+    .achievement-badge {
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.25);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--accent-yellow);
+    }
+    blockquote {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin: 1.2rem 0;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.2rem 0; }
+    .credit { color: var(--text-muted); font-size: 0.7rem; display: block; margin-top: 1.2rem; }
+
+    /* ========== کنفتی ========== */
+    .confetti-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .confetti {
+      position: absolute;
+      top: -10%;
+      animation: confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ========== دیالوگ ========== */
+    dialog {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 550px;
+      width: 90%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    dialog::backdrop { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
+    dialog .close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.8rem;
+      position: absolute;
+      top: 0.8rem;
+      inset-inline-end: 1.2rem;
+      cursor: pointer;
+      padding: 0;
+      width: auto;
+      height: auto;
+      transition: all 0.3s ease;
+    }
+    dialog .close:hover { color: var(--accent-red); transform: rotate(90deg); }
+    dialog h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    dialog h2 i { color: var(--accent-blue); margin-inline-end: 0.5rem; }
+    dialog p { color: var(--text-secondary); line-height: 1.9; margin: 0.8rem 0; }
+    dialog hr { border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0; }
+    dialog h3 { color: var(--accent-blue); margin: 1rem 0 0.5rem; font-size: 1rem; }
+    dialog ul { list-style: none; padding: 0; }
+    dialog ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    dialog ul li i { color: var(--accent-green); }
+
+    /* ========== اعلان دستاورد ========== */
+    .achievement-toast {
+      position: fixed;
+      top: 4rem;
+      inset-inline-end: 1rem;
+      background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(244,114,182,0.2));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(251,191,36,0.35);
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      color: var(--text-primary);
+      z-index: 2000;
+      font-weight: 600;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: toastIn 0.4s ease, toastOut 0.4s ease 3.5s forwards;
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+      to { opacity: 0; transform: translateY(-20px) scale(0.9); }
+    }
+
+    /* ========== پنل راهنمای شروع بازی ========== */
+    .howto-panel {
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin: 0 0 1.8rem;
+      text-align: start;
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .howto-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .howto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+    .howto-item { display: flex; gap: 0.7rem; align-items: flex-start; }
+    .howto-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.15);
+      color: var(--accent-blue);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+    }
+    .howto-item strong { display: block; font-size: 0.9rem; margin-bottom: 0.3rem; color: var(--text-primary); }
+    .howto-item p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+    @media (max-width: 620px) {
+      .howto-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== نشان ملی/بین‌المللی ========== */
+    .edition-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(52,211,153,0.12), rgba(59,130,246,0.12));
+      border: 1px solid rgba(52,211,153,0.3);
+      color: var(--accent-green);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== ورودی نام بازیکن ========== */
+    .name-field { margin: 1.5rem 0; text-align: start; }
+    .name-field label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .name-field input {
+      width: 100%;
+      padding: 0.8rem 1.1rem;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .name-field input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+
+    /* ========== دسترسی‌پذیری: فوکوس ========== */
+    a:focus-visible, button:focus-visible, input:focus-visible, .role:focus-visible, .option-btn:focus-visible {
+      outline: 3px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
+
+    /* ========== دکمه‌های ثانویه صفحه شروع ========== */
+    .start-actions-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== نمودار راداری ========== */
+    .radar-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 1.2rem 0;
+      position: relative;
+      z-index: 2;
+    }
+    .radar-wrap canvas { max-width: 100%; }
+
+    /* ========== جدول رتبه‌بندی ========== */
+    .leaderboard-card { border-radius: 30px; padding: 2.5rem; max-width: 700px; width: 100%; }
+    .leaderboard-list { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 0.7rem 1.1rem;
+      font-size: 0.9rem;
+    }
+    .lb-row.me { border-color: var(--accent-blue); background: rgba(59,130,246,0.08); }
+    .lb-rank {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(96,165,250,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem; color: var(--accent-blue);
+      flex-shrink: 0;
+    }
+    .lb-name { flex: 1; font-weight: 600; }
+    .lb-score { color: var(--accent-green); font-weight: 700; }
+    .lb-empty { color: var(--text-secondary); text-align: center; padding: 2rem 0; font-size: 0.9rem; }
+    .back-mini {
+      background: none; border: 1px solid var(--border-color); color: var(--text-secondary);
+      border-radius: 50px; padding: 0.5rem 1.2rem; font-family: inherit; cursor: pointer; font-size: 0.85rem;
+    }
+
+    /* ========== گواهی ========== */
+    #certificateCanvas { display: none; }
+
+    /* ========== چاپ ========== */
+    @media print {
+      .global-controls, .actions, #confetti, .footer-credit, .start-actions-row { display: none !important; }
+    }
+
+    /* ========== واکنش‌گرایی ========== */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.6rem; }
+      h2 { font-size: 1.2rem; }
+      .panel, .question-card, .result-card { padding: 1.5rem; }
+      .roles { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .quick-stats { gap: 0.5rem; }
+      .quick-stats span { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
+      .topbar { flex-direction: column; align-items: stretch; text-align: center; }
+      .topbar-left, .topbar-stats { justify-content: center; }
+      .cube-3d { display: none; }
+      .ctrl-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      .role { padding: 1rem 0.5rem; }
+      .role-icon { font-size: 1.6rem; }
+      .question-card { padding: 1rem; }
+      .option-btn { font-size: 0.85rem; padding: 0.7rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== لودر ========== -->
+  <div id="loader">
+    <div class="loader-logo" id="loaderLogo">IRAN 1410</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+
+  <!-- ========== کنترل‌های سراسری ========== -->
+  <div class="global-controls">
+    <button class="ctrl-btn" id="langToggle" title="تغییر زبان / Change Language">
+      <i class="fas fa-globe"></i>
+    </button>
+    <button class="ctrl-btn" id="themeToggle" title="تغییر تم / Change Theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="ctrl-btn" id="soundToggle" title="صدا / Sound">
+      <i class="fas fa-volume-up" id="soundIcon"></i>
+    </button>
+  </div>
+
+  <main id="app">
+
+    <!-- ========== صفحه شروع ========== -->
+    <section id="start" class="screen active">
+      <div class="grid-bg"></div>
+
+      <div class="cube-container">
+        <div class="cube-3d"><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div></div>
+        <div class="cube-3d"><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div></div>
+        <div class="cube-3d"><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div></div>
+        <div class="cube-3d"><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div></div>
+        <div class="cube-3d"><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div><div class="cube-face"></div></div>
+      </div>
+
+      <div class="particles-3d" id="particles3d"></div>
+
+      <div class="brand" id="t-brand">🇮🇷 انجمن علمی مهندسی شیمی دانشگاه ارومیه</div>
+      <div class="hero">
+        <div class="edition-badge"><i class="fas fa-globe"></i> <span id="t-editionBadge">نسخه ملی و بین‌المللی</span></div>
+        <div class="eyebrow" id="t-eyebrow">✨ یک تجربه تعاملی تصمیم‌محور</div>
+        <h1 id="t-title">ایران <span>۱۴۱۰</span></h1>
+        <h2 id="t-subtitle">بازی تعاملی برای ساختن آینده</h2>
+        <p id="t-description">پنج سال فرصت داری تا آینده یک منطقه ساحلی را بسازی. تصمیم‌های تو مسیر انرژی، اقتصاد دریا، آب، اشتغال، پایداری و جامعه را تغییر می‌دهند.</p>
+        <div class="quick-stats">
+          <span><i class="fas fa-bolt"></i> <span id="t-stat1">۷ شاخص کلیدی</span></span>
+          <span><i class="fas fa-chart-line"></i> <span id="t-stat2">۱۸ سناریو</span></span>
+          <span><i class="fas fa-graduation-cap"></i> <span id="t-stat3">بازخورد علمی</span></span>
+        </div>
+
+        <div class="howto-panel glass">
+          <div class="howto-title"><i class="fas fa-circle-question"></i> <span id="t-howtoTitle">این بازی چیست و چطور کار می‌کند؟</span></div>
+          <div class="howto-grid">
+            <div class="howto-item">
+              <span class="howto-num">۱</span>
+              <div><strong id="t-howto1Title">نام و سبک تصمیم‌گیری</strong><p id="t-howto1Desc">نامت را وارد می‌کنی (برای گواهی و جدول رتبه‌بندی) و یکی از ۴ سبک تصمیم‌گیری را انتخاب می‌کنی. این انتخاب فقط حال‌وهوای بازی را شخصی‌تر می‌کند.</p></div>
+            </div>
+            <div class="howto-item">
+              <span class="howto-num">۲</span>
+              <div><strong id="t-howto2Title">۱۸ تصمیم طی ۵ سال</strong><p id="t-howto2Desc">از سال ۱۴۰۶ تا ۱۴۱۰ با ۱۸ چالش واقعی روبه‌رو می‌شوی: انرژی، اقتصاد دریا، آب، اشتغال، شهرسازی، سلامت، آموزش، محیط‌زیست و همکاری بین‌المللی.</p></div>
+            </div>
+            <div class="howto-item">
+              <span class="howto-num">۳</span>
+              <div><strong id="t-howto3Title">۷ شاخص و بازخورد علمی</strong><p id="t-howto3Desc">هر گزینه روی ۷ شاخص (انرژی، اقتصاد، آب، اشتغال، پایداری، جامعه، جایگاه جهانی) اثر می‌گذارد. درصدهای تأثیر واقع‌بینانه و محدود طراحی شده‌اند تا روند تصمیم‌ها را به‌صورت آموزشی و قابل‌مقایسه نشان دهند، نه به‌صورت اغراق‌آمیز. پس از هر انتخاب، می‌توانی اثر همهٔ گزینه‌ها را در کنار هم مقایسه کنی و در صورت نیاز به سؤال قبلی برگردی و تصمیمت را عوض کنی.</p></div>
+            </div>
+            <div class="howto-item">
+              <span class="howto-num">۴</span>
+              <div><strong id="t-howto4Title">کارنامه، لقب و گواهی</strong><p id="t-howto4Desc">در پایان، کارنامه‌ات را با نمودار راداری می‌بینی، یکی از لقب‌های متنوع را می‌گیری، دستاوردهایت ثبت می‌شود و می‌توانی گواهی پایان بازی را دانلود یا نتیجه‌ات را در جدول رتبه‌بندی محلی ثبت کنی.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary pulse" id="startBtn">
+          <i class="fas fa-play"></i> <span id="t-startBtn">شروع بازی</span>
+        </button>
+        <div class="start-actions-row">
+          <button class="btn btn-ghost hidden" id="continueBtn">
+            <i class="fas fa-history"></i> <span id="t-continueBtn">ادامه بازی</span>
+          </button>
+          <button class="btn btn-ghost" id="aboutBtn">
+            <i class="fas fa-info-circle"></i> <span id="t-aboutBtn">راهنما و درباره بازی</span>
+          </button>
+          <button class="btn btn-ghost" id="leaderboardBtn">
+            <i class="fas fa-trophy"></i> <span id="t-leaderboardBtn">جدول رتبه‌بندی</span>
+          </button>
+        </div>
+      </div>
+      <div class="footer-credit" id="t-footerCredit">طراحی و تولید: انجمن علمی مهندسی شیمی دانشگاه ارومیه</div>
+    </section>
+
+    <!-- ========== صفحه انتخاب نقش ========== -->
+    <section id="role" class="screen">
+      <div class="panel narrow glass">
+        <div class="step"><i class="fas fa-user-astronaut"></i> <span id="t-step0">مرحله ۰</span></div>
+        <h2 id="t-roleTitle">چه نوع تصمیم‌گیرنده‌ای هستی؟</h2>
+        <p id="t-roleSubtitle" style="color:var(--text-secondary);line-height:1.8;">انتخابت فقط سبک بازی را شخصی‌تر می‌کند.</p>
+        <div class="name-field">
+          <label for="playerNameInput" id="t-nameLabel">نام تو برای گواهی و جدول رتبه‌بندی</label>
+          <input type="text" id="playerNameInput" maxlength="40" autocomplete="off">
+        </div>
+        <div class="roles">
+          <button class="role" data-role="engineer">
+            <span class="role-icon"><i class="fas fa-microscope"></i></span>
+            <strong id="t-roleEngineer">مهندس</strong>
+            <small id="t-roleEngineerDesc">🔬 فناوری و بهره‌وری</small>
+          </button>
+          <button class="role" data-role="manager">
+            <span class="role-icon"><i class="fas fa-briefcase"></i></span>
+            <strong id="t-roleManager">مدیر</strong>
+            <small id="t-roleManagerDesc">💼 اقتصاد و سرمایه‌گذاری</small>
+          </button>
+          <button class="role" data-role="developer">
+            <span class="role-icon"><i class="fas fa-seedling"></i></span>
+            <strong id="t-roleDeveloper">توسعه‌گر</strong>
+            <small id="t-roleDeveloperDesc">🌱 پایداری و آینده‌نگری</small>
+          </button>
+          <button class="role" data-role="community">
+            <span class="role-icon"><i class="fas fa-handshake"></i></span>
+            <strong id="t-roleCommunity">جامعه‌محور</strong>
+            <small id="t-roleCommunityDesc">🤝 جامعه و فرصت برابر</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== صفحه بازی ========== -->
+    <section id="game" class="screen">
+      <div class="game-wrap">
+        <header class="topbar glass">
+          <div class="topbar-left">
+            <b id="t-appName">ایران ۱۴۱۰</b>
+            <small><i class="far fa-calendar-alt"></i> <span id="t-yearLabel">سال</span> <span id="year">۱۴۰۶</span></small>
+          </div>
+          <div class="topbar-stats">
+            <span id="stepCounter" style="color:var(--text-secondary);font-size:0.85rem;"></span>
+            <button id="backBtn" class="btn-mini back" disabled><i class="fas fa-arrow-right"></i> <span id="t-back">سؤال قبلی</span></button>
+            <button id="restartBtn" class="btn-mini"><i class="fas fa-redo"></i> <span id="t-restart">شروع دوباره</span></button>
+          </div>
+        </header>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="progress"><div id="progressBar"></div></div>
+
+        <article class="question-card glass">
+          <div class="step" id="stepLabel"></div>
+          <h2 id="qTitle"></h2>
+          <p id="qText"></p>
+          <div id="options" class="options"></div>
+          <div id="feedback" class="feedback hidden">
+            <div class="feedback-header">
+              <i class="fas fa-lightbulb"></i>
+              <h3 id="t-feedbackTitle">📚 بازخورد علمی و آموزشی</h3>
+            </div>
+            <p id="feedbackText"></p>
+            <div class="comparison-title" id="t-comparisonTitle"><i class="fas fa-scale-balanced"></i> مقایسهٔ اثر همهٔ گزینه‌ها</div>
+            <div class="comparison-table" id="impactDetail"></div>
+          </div>
+          <button id="nextBtn" class="btn btn-primary hidden">
+            <span id="t-next">ادامه</span> <i class="fas fa-arrow-left"></i>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== صفحه نتیجه ========== -->
+    <section id="result" class="screen">
+      <div class="confetti-container" id="confetti"></div>
+      <div class="result-card glass">
+        <div class="brand" id="t-brand2">🇮🇷 انجمن علمی مهندسی شیمی دانشگاه ارومیه</div>
+        <div class="eyebrow"><i class="fas fa-trophy"></i> <span id="t-yearArrived">سال ۱۴۱۰ فرا رسید</span></div>
+        <h1 id="t-resultTitle">کارنامه <span>آینده</span></h1>
+        <p id="resultIntro" style="color:var(--text-secondary);line-height:1.8;margin:1rem 0;"></p>
+        <div id="resultStats" class="result-stats"></div>
+        <div class="radar-wrap"><canvas id="radarChart" width="360" height="360" role="img" aria-label="نمودار شاخص‌های پایانی"></canvas></div>
+        <div class="title-box">
+          <small><i class="fas fa-medal"></i> <span id="t-yourTitle">عنوان شما</span></small>
+          <strong id="playerTitle"></strong>
+        </div>
+        <div class="achievements" id="achievements"></div>
+        <blockquote id="t-quote">«آینده را تماشا نکن؛ انتخابش کن.»</blockquote>
+        <div class="actions">
+          <button class="btn btn-primary" id="againBtn"><i class="fas fa-redo"></i> <span id="t-playAgain">بازی دوباره</span></button>
+          <button class="btn btn-ghost" id="shareBtn"><i class="fas fa-share-alt"></i> <span id="t-shareResult">اشتراک‌گذاری نتیجه</span></button>
+          <button class="btn btn-ghost" id="certificateBtn"><i class="fas fa-certificate"></i> <span id="t-certificateBtn">دریافت گواهی</span></button>
+          <button class="btn btn-ghost" id="viewLeaderboardBtn"><i class="fas fa-trophy"></i> <span id="t-leaderboardBtn2">جدول رتبه‌بندی</span></button>
+        </div>
+        <small class="credit" id="t-credit">طراحی و تولید: انجمن علمی مهندسی شیمی دانشگاه ارومیه</small>
+      </div>
+    </section>
+
+    <!-- ========== صفحه جدول رتبه‌بندی ========== -->
+    <section id="leaderboard" class="screen">
+      <div class="leaderboard-card glass">
+        <div class="eyebrow"><i class="fas fa-trophy"></i> <span id="t-leaderboardTitle">جدول رتبه‌بندی (روی این دستگاه)</span></div>
+        <p id="t-leaderboardDesc" style="color:var(--text-secondary);line-height:1.8;margin:0.5rem 0 1rem;">نتایج بازی‌های قبلی که روی همین مرورگر ذخیره شده‌اند.</p>
+        <div class="leaderboard-list" id="leaderboardList"></div>
+        <div class="actions">
+          <button class="back-mini" id="lbBackBtn"><i class="fas fa-arrow-right"></i> <span id="t-lbBack">بازگشت</span></button>
+          <button class="back-mini" id="lbClearBtn"><i class="fas fa-trash"></i> <span id="t-lbClear">پاک کردن جدول</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== دیالوگ درباره ========== -->
+  <dialog id="aboutDialog">
+    <button class="close" id="closeAbout">×</button>
+    <h2><i class="fas fa-info-circle"></i> <span id="t-aboutTitle">درباره ایران ۱۴۱۰</span></h2>
+    <p id="t-aboutDesc1">«ایران ۱۴۱۰» یک بازی تعاملی آموزشی در سطح ملی و بین‌المللی است که چهار مسئله را در قالب یک تجربه تصمیم‌محور به هم پیوند می‌دهد: اقتصاد دریاپایه، ناترازی انرژی، مسئولیت اجتماعی با تأکید بر مناطق کم‌برخوردار، و دیپلماسی و همکاری بین‌المللی.</p>
+    <p id="t-aboutDesc2">این بازی توسط انجمن علمی مهندسی شیمی دانشگاه ارومیه طراحی و تولید شده است.</p>
+    <hr>
+    <h3><i class="fas fa-gem"></i> <span id="t-keyConcepts">مفاهیم کلیدی</span></h3>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> <span id="t-concept1">اقتصاد دریاپایه: استفاده پایدار از منابع دریایی برای توسعه اقتصادی</span></li>
+      <li><i class="fas fa-check-circle"></i> <span id="t-concept2">ناترازی انرژی: شکاف بین تولید و مصرف انرژی در کشور</span></li>
+      <li><i class="fas fa-check-circle"></i> <span id="t-concept3">مسئولیت اجتماعی: توجه به مناطق کم‌برخوردار در تصمیم‌گیری‌ها</span></li>
+      <li><i class="fas fa-check-circle"></i> <span id="t-concept4">توسعه پایدار: توازن بین رشد اقتصادی، عدالت اجتماعی و حفظ محیط‌زیست</span></li>
+      <li><i class="fas fa-check-circle"></i> <span id="t-concept5">دیپلماسی و همکاری بین‌المللی: تعهدات اقلیمی، جذب سرمایه‌گذاری خارجی و شبکه‌سازی علمی جهانی</span></li>
+    </ul>
+  </dialog>
+
+  <canvas id="certificateCanvas" width="1400" height="990"></canvas>
+
+  <script>
+    // ================================================================
+    // بخش ۱: داده‌های ترجمه
+    // ================================================================
+    var translations = {
+      fa: {
+        title: "ایران ۱۴۱۰ | بازی تعاملی برای ساختن آینده",
+        brand: "🇮🇷 انجمن علمی مهندسی شیمی دانشگاه ارومیه",
+        eyebrow: "✨ یک تجربه تعاملی تصمیم‌محور",
+        mainTitle: "ایران ۱۴۱۰",
+        subtitle: "بازی تعاملی برای ساختن آینده",
+        description: "پنج سال فرصت داری تا آینده یک منطقه ساحلی را بسازی. تصمیم‌های تو مسیر انرژی، اقتصاد دریا، آب، اشتغال، پایداری و جامعه را تغییر می‌دهند.",
+        stat1: "۷ شاخص کلیدی",
+        stat2: "۱۸ سناریو",
+        stat3: "بازخورد علمی",
+        startBtn: "شروع بازی",
+        aboutBtn: "راهنما و درباره بازی",
+        footerCredit: "طراحی و تولید: انجمن علمی مهندسی شیمی دانشگاه ارومیه",
+        step0: "مرحله ۰",
+        roleTitle: "چه نوع تصمیم‌گیرنده‌ای هستی؟",
+        roleSubtitle: "انتخابت فقط سبک بازی را شخصی‌تر می‌کند.",
+        roleEngineer: "مهندس",
+        roleEngineerDesc: "🔬 فناوری و بهره‌وری",
+        roleManager: "مدیر",
+        roleManagerDesc: "💼 اقتصاد و سرمایه‌گذاری",
+        roleDeveloper: "توسعه‌گر",
+        roleDeveloperDesc: "🌱 پایداری و آینده‌نگری",
+        roleCommunity: "جامعه‌محور",
+        roleCommunityDesc: "🤝 جامعه و فرصت برابر",
+        appName: "ایران ۱۴۱۰",
+        yearLabel: "سال",
+        restart: "شروع دوباره",
+        feedbackTitle: "📚 بازخورد علمی و آموزشی",
+        next: "ادامه",
+        yearArrived: "سال ۱۴۱۰ فرا رسید",
+        resultTitle: "کارنامه آینده",
+        yourTitle: "عنوان شما",
+        quote: "«آینده را تماشا نکن؛ انتخابش کن.»",
+        playAgain: "بازی دوباره",
+        shareResult: "اشتراک‌گذاری نتیجه",
+        credit: "طراحی و تولید: انجمن علمی مهندسی شیمی دانشگاه ارومیه",
+        aboutTitle: "درباره ایران ۱۴۱۰",
+        aboutDesc1: "«ایران ۱۴۱۰» یک بازی تعاملی آموزشی در سطح ملی و بین‌المللی است که چهار مسئله را در قالب یک تجربه تصمیم‌محور به هم پیوند می‌دهد: اقتصاد دریاپایه، ناترازی انرژی، مسئولیت اجتماعی با تأکید بر مناطق کم‌برخوردار، و دیپلماسی و همکاری بین‌المللی.",
+        aboutDesc2: "این بازی توسط انجمن علمی مهندسی شیمی دانشگاه ارومیه طراحی و تولید شده است.",
+        keyConcepts: "مفاهیم کلیدی",
+        concept1: "اقتصاد دریاپایه: استفاده پایدار از منابع دریایی برای توسعه اقتصادی",
+        concept2: "ناترازی انرژی: شکاف بین تولید و مصرف انرژی در کشور",
+        concept3: "مسئولیت اجتماعی: توجه به مناطق کم‌برخوردار در تصمیم‌گیری‌ها",
+        concept4: "توسعه پایدار: توازن بین رشد اقتصادی، عدالت اجتماعی و حفظ محیط‌زیست",
+        concept5: "دیپلماسی و همکاری بین‌المللی: تعهدات اقلیمی، جذب سرمایه‌گذاری خارجی و شبکه‌سازی علمی جهانی",
+        statLabels: {
+          energy: "⚡ انرژی",
+          economy: "💰 اقتصاد",
+          water: "💧 آب",
+          employment: "👷 اشتغال",
+          sustainability: "🌿 پایداری",
+          society: "👥 جامعه",
+          global: "🌍 جایگاه جهانی"
+        },
+        step: "مرحله",
+        of: "از",
+        resultIntro: function(avg) { return "پس از پنج سال تلاش و تصمیم‌گیری، منطقه ساحلی شما با میانگین امتیاز " + avg + "% به این کارنامه رسیده است."; },
+        achievements: {
+          green: "مدیر سبز و پایدار",
+          economy: "اقتصاددان دریا",
+          employment: "اشتغال‌آفرین برتر",
+          energy: "مدیر هوشمند انرژی",
+          water: "حافظ منابع آب",
+          society: "عدالت‌خواه اجتماعی",
+          global: "سفیر همکاری بین‌المللی"
+        },
+        titles: {
+          top: "🌟 معمار بزرگ توسعه",
+          high: "🌟 آینده‌ساز استراتژیک",
+          mid: "⚖️ مدیر متعادل‌گر",
+          low: "📈 توسعه‌گر واقع‌گرا",
+          sustain: "🌱 پیشگام پایداری و طبیعت",
+          sustainElite: "🌎 حامی برتر کرهٔ زمین",
+          econ: "💰 معمار اقتصادی توانمند",
+          econElite: "💎 غول اقتصاد دریامحور",
+          social: "🤝 توسعه‌گر اجتماعی و عدالت‌خواه",
+          socialElite: "🌟 الگوی ملی عدالت اجتماعی",
+          energy: "⚡ مدیر هوشمند انرژی",
+          energyElite: "🔋 پیشتاز انقلاب انرژی پاک",
+          water: "💧 حافظ منابع آب",
+          waterElite: "💧 استاد مدیریت آب سرزمین",
+          employ: "👷 اشتغال‌آفرین بزرگ",
+          employElite: "🏗️ معمار بازار کار ملی",
+          globalT: "🌍 دیپلمات توسعه بین‌المللی",
+          globalElite: "🕊️ سفیر جهانی توسعهٔ پایدار"
+        },
+        shareText: function(title) { return "🇮🇷 من در بازی ایران ۱۴۱۰ عنوان \"" + title + "\" را کسب کردم! 🏆"; },
+        shareAlert: "✅ نتیجه بازی کپی شد!",
+        confirmRestart: "آیا مطمئنی می‌خواهی بازی را از نو شروع کنی؟",
+        achievementToast: function(name) { return "🏅 دستاورد جدید: " + name; },
+        editionBadge: "🌍 نسخه ملی و بین‌المللی",
+        nameLabel: "نام تو برای گواهی و جدول رتبه‌بندی",
+        namePlaceholder: "نام و نام خانوادگی...",
+        continueBtn: "ادامه بازی ذخیره‌شده",
+        leaderboardBtn: "جدول رتبه‌بندی",
+        leaderboardBtn2: "جدول رتبه‌بندی",
+        leaderboardTitle: "جدول رتبه‌بندی (روی این دستگاه)",
+        leaderboardDesc: "نتایج بازی‌های قبلی که روی همین مرورگر ذخیره شده‌اند. برای رتبه‌بندی رسمی مسابقه، تصویر گواهی پایان بازی را ارسال کن.",
+        lbBack: "بازگشت",
+        lbClear: "پاک کردن جدول",
+        lbEmpty: "هنوز نتیجه‌ای ثبت نشده. اولین بازی را تمام کن!",
+        certificateBtn: "دریافت گواهی",
+        certGenerating: "در حال ساخت گواهی...",
+        certTitle: "گواهی مشارکت",
+        certGameName: "ایران ۱۴۱۰ | بازی تعاملی ملی-بین‌المللی",
+        certPlayerLine: "این گواهی نشان می‌دهد",
+        certScoreLine: function(avg) { return "با میانگین امتیاز " + avg + "٪ بازی را به پایان رسانده است."; },
+        certDateLabel: "تاریخ",
+        certRankLabel: "رتبه",
+        namePrompt: "لطفاً پیش از شروع، نام خود را وارد کن.",
+        resumeToast: "بازی ذخیره‌شده بازیابی شد.",
+        confirmClearLb: "آیا جدول رتبه‌بندی محلی پاک شود؟",
+        howtoTitle: "این بازی چیست و چطور کار می‌کند؟",
+        howto1Title: "نام و سبک تصمیم‌گیری",
+        howto1Desc: "نامت را وارد می‌کنی (برای گواهی و جدول رتبه‌بندی) و یکی از ۴ سبک تصمیم‌گیری را انتخاب می‌کنی. این انتخاب فقط حال‌وهوای بازی را شخصی‌تر می‌کند.",
+        howto2Title: "۱۸ تصمیم طی ۵ سال",
+        howto2Desc: "از سال ۱۴۰۶ تا ۱۴۱۰ با ۱۸ چالش واقعی روبه‌رو می‌شوی: انرژی، اقتصاد دریا، آب، اشتغال، شهرسازی، سلامت، آموزش، محیط‌زیست و همکاری بین‌المللی.",
+        howto3Title: "۷ شاخص و بازخورد علمی",
+        howto3Desc: "هر گزینه روی ۷ شاخص (انرژی، اقتصاد، آب، اشتغال، پایداری، جامعه، جایگاه جهانی) اثر می‌گذارد. درصدهای تأثیر واقع‌بینانه و محدود طراحی شده‌اند تا روند تصمیم‌ها را به‌صورت آموزشی نشان دهند، نه به‌صورت اغراق‌آمیز. پس از هر انتخاب می‌توانی اثر همهٔ گزینه‌ها را مقایسه کنی و در صورت نیاز به سؤال قبلی برگردی.",
+        howto4Title: "کارنامه، لقب و گواهی",
+        howto4Desc: "در پایان، کارنامه‌ات را با نمودار راداری می‌بینی، یکی از لقب‌های متنوع را می‌گیری، دستاوردهایت ثبت می‌شود و می‌توانی گواهی پایان بازی را دانلود یا نتیجه‌ات را در جدول رتبه‌بندی محلی ثبت کنی.",
+        back: "سؤال قبلی",
+        comparisonTitle: "مقایسهٔ اثر همهٔ گزینه‌ها",
+        chosenLabel: "✅ گزینهٔ انتخابی"
+      },
+      en: {
+        title: "Iran 1410 | Interactive Game for Building the Future",
+        brand: "🇮🇷 Chemical Engineering Scientific Association - Urmia University",
+        eyebrow: "✨ An Interactive Decision-Making Experience",
+        mainTitle: "Iran 1410",
+        subtitle: "An Interactive Game for Building the Future",
+        description: "You have five years to build the future of a coastal region. Your decisions will shape energy, marine economy, water, employment, sustainability, and society.",
+        stat1: "7 Key Indicators",
+        stat2: "18 Scenarios",
+        stat3: "Scientific Feedback",
+        startBtn: "Start Game",
+        aboutBtn: "Guide & About",
+        footerCredit: "Designed & Produced by: Chemical Engineering Scientific Association - Urmia University",
+        step0: "Step 0",
+        roleTitle: "What kind of decision-maker are you?",
+        roleSubtitle: "Your choice only personalizes the gameplay.",
+        roleEngineer: "Engineer",
+        roleEngineerDesc: "🔬 Technology & Efficiency",
+        roleManager: "Manager",
+        roleManagerDesc: "💼 Economy & Investment",
+        roleDeveloper: "Developer",
+        roleDeveloperDesc: "🌱 Sustainability & Foresight",
+        roleCommunity: "Community-Oriented",
+        roleCommunityDesc: "🤝 Society & Equal Opportunity",
+        appName: "Iran 1410",
+        yearLabel: "Year",
+        restart: "Restart",
+        feedbackTitle: "📚 Scientific & Educational Feedback",
+        next: "Continue",
+        yearArrived: "The Year 1410 Has Arrived",
+        resultTitle: "Future Report Card",
+        yourTitle: "Your Title",
+        quote: "\"Don't watch the future; choose it.\"",
+        playAgain: "Play Again",
+        shareResult: "Share Result",
+        credit: "Designed by: Chemical Engineering Scientific Association - Urmia University",
+        aboutTitle: "About Iran 1410",
+        aboutDesc1: "\"Iran 1410\" is a national and international educational interactive game that connects four issues in a decision-making experience: marine-based economy, energy imbalance, social responsibility with a focus on underprivileged regions, and international diplomacy and cooperation.",
+        aboutDesc2: "This game was designed and produced by the Chemical Engineering Scientific Association of Urmia University.",
+        keyConcepts: "Key Concepts",
+        concept1: "Marine Economy: Sustainable use of marine resources for economic development",
+        concept2: "Energy Imbalance: The gap between energy production and consumption",
+        concept3: "Social Responsibility: Attention to underprivileged regions in decision-making",
+        concept4: "Sustainable Development: Balance between economic growth, social justice, and environmental protection",
+        concept5: "International Diplomacy & Cooperation: climate commitments, foreign investment, and global scientific networking",
+        statLabels: {
+          energy: "⚡ Energy",
+          economy: "💰 Economy",
+          water: "💧 Water",
+          employment: "👷 Employment",
+          sustainability: "🌿 Sustainability",
+          society: "👥 Society",
+          global: "🌍 Global Standing"
+        },
+        step: "Step",
+        of: "of",
+        resultIntro: function(avg) { return "After five years of effort and decision-making, your coastal region has reached this report card with an average score of " + avg + "%."; },
+        achievements: {
+          green: "Green & Sustainable Manager",
+          economy: "Marine Economist",
+          employment: "Top Job Creator",
+          energy: "Smart Energy Manager",
+          water: "Water Resources Guardian",
+          society: "Social Justice Advocate",
+          global: "International Cooperation Ambassador"
+        },
+        titles: {
+          top: "🌟 Grand Architect of Development",
+          high: "🌟 Strategic Future-Maker",
+          mid: "⚖️ Balanced Manager",
+          low: "📈 Realistic Developer",
+          sustain: "🌱 Pioneer of Sustainability",
+          sustainElite: "🌎 Guardian of the Planet",
+          econ: "💰 Capable Economic Architect",
+          econElite: "💎 Marine Economy Titan",
+          social: "🤝 Social Developer & Justice-Seeker",
+          socialElite: "🌟 National Model of Social Justice",
+          energy: "⚡ Smart Energy Manager",
+          energyElite: "🔋 Clean Energy Revolution Leader",
+          water: "💧 Guardian of Water Resources",
+          waterElite: "💧 Master of National Water Management",
+          employ: "👷 Great Job Creator",
+          employElite: "🏗️ Architect of the National Job Market",
+          globalT: "🌍 International Development Diplomat",
+          globalElite: "🕊️ Global Sustainable Development Ambassador"
+        },
+        shareText: function(title) { return "🇮🇷 I earned the title \"" + title + "\" in the Iran 1410 game! 🏆"; },
+        shareAlert: "✅ Result copied!",
+        confirmRestart: "Are you sure you want to restart?",
+        achievementToast: function(name) { return "🏅 New Achievement: " + name; },
+        editionBadge: "🌍 National & International Edition",
+        nameLabel: "Your name for the certificate & leaderboard",
+        namePlaceholder: "Full name...",
+        continueBtn: "Continue Saved Game",
+        leaderboardBtn: "Leaderboard",
+        leaderboardBtn2: "Leaderboard",
+        leaderboardTitle: "Leaderboard (on this device)",
+        leaderboardDesc: "Results from previous games saved in this browser. For official competition ranking, submit your finish certificate image.",
+        lbBack: "Back",
+        lbClear: "Clear Leaderboard",
+        lbEmpty: "No results yet. Finish your first game!",
+        certificateBtn: "Get Certificate",
+        certGenerating: "Generating certificate...",
+        certTitle: "Certificate of Participation",
+        certGameName: "Iran 1410 | National & International Interactive Game",
+        certPlayerLine: "This certifies that",
+        certScoreLine: function(avg) { return "completed the game with an average score of " + avg + "%."; },
+        certDateLabel: "Date",
+        certRankLabel: "Rank",
+        namePrompt: "Please enter your name before starting.",
+        resumeToast: "Saved game restored.",
+        confirmClearLb: "Clear the local leaderboard?",
+        howtoTitle: "What is this game and how does it work?",
+        howto1Title: "Name & decision-making style",
+        howto1Desc: "Enter your name (for the certificate and leaderboard) and pick one of 4 decision-making styles. This only personalizes the game's tone.",
+        howto2Title: "18 decisions over 5 years",
+        howto2Desc: "From 1406 to 1410 you'll face 18 real challenges: energy, marine economy, water, employment, urban planning, health, education, environment, and international cooperation.",
+        howto3Title: "7 indicators & scientific feedback",
+        howto3Desc: "Each option affects 7 indicators (energy, economy, water, employment, sustainability, society, global standing). Impact percentages are kept realistic and bounded so decision trends stay educational rather than exaggerated. After each choice you can compare all options side by side, and go back to an earlier question if you want to change your answer.",
+        howto4Title: "Report card, title & certificate",
+        howto4Desc: "At the end you'll see a radar-chart report card, earn one of many varied titles, unlock achievements, and can download a finish certificate or log your result on the local leaderboard.",
+        back: "Previous Question",
+        comparisonTitle: "Comparing the effect of all options",
+        chosenLabel: "✅ Chosen option"
+      }
+    };
+
+    // ================================================================
+    // بخش ۲: سناریوها
+    // ================================================================
+    var scenarios = [
+      {
+        year: 1406,
+        title: {
+          fa: "🔋 بحران ناترازی انرژی در سواحل جنوب",
+          en: "🔋 Energy Imbalance Crisis on the Southern Coasts"
+        },
+        text: {
+          fa: "تابستان ۱۴۰۶، منطقه ساحلی با خاموشی‌های گسترده مواجه شده. صنایع وابسته به برق در آستانه تعطیلی هستند. چه راهکاری انتخاب می‌کنی؟",
+          en: "Summer 1406: The coastal region faces widespread blackouts. Electricity-dependent industries are on the verge of closure. What solution do you choose?"
+        },
+        options: [
+          {
+            text: { fa: "☀️ سرمایه‌گذاری روی نیروگاه‌های خورشیدی شناور در دریا", en: "☀️ Invest in floating solar power plants at sea" },
+            effects: { energy: 8, sustainability: 6, economy: 2, employment: 4 },
+            feedback: {
+              fa: "نیروگاه‌های خورشیدی شناور یکی از فناوری‌های نوین در حوزه انرژی‌های تجدیدپذیر هستند که با استقرار روی سطوح آبی، علاوه بر تولید انرژی پاک، از تبخیر آب نیز جلوگیری می‌کنند. ایران با داشتن سواحل طولانی، پتانسیل بسیار بالایی برای توسعه این نوع نیروگاه‌ها دارد.",
+              en: "Floating solar power plants are one of the modern technologies in renewable energy that, by being installed on water surfaces, not only produce clean energy but also prevent water evaporation. Iran, with long coastlines, has great potential for developing such plants."
+            }
+          },
+          {
+            text: { fa: "🏭 احداث نیروگاه‌های گازی با راندمان بالا", en: "🏭 Build high-efficiency gas power plants" },
+            effects: { energy: 10, economy: 5, sustainability: -4, water: -2 },
+            feedback: {
+              fa: "نیروگاه‌های گازی با راندمان بالا از فناوری‌های پیشرفته برای تولید برق با مصرف سوخت کمتر استفاده می‌کنند. با این حال، این نیروگاه‌ها همچنان به آب برای خنک‌سازی نیاز دارند و انتشار گازهای گلخانه‌ای دارند. در کوتاه‌مدت پاسخگو هستند، اما راهکارهای بلندمدت پایدارتر باید در نظر گرفته شوند.",
+              en: "High-efficiency gas power plants use advanced technologies to generate electricity with less fuel consumption. However, these plants still need water for cooling and emit greenhouse gases. They meet short-term needs, but more sustainable long-term solutions should be considered."
+            }
+          },
+          {
+            text: { fa: "📉 برنامه مدیریت هوشمند مصرف انرژی برای صنایع", en: "📉 Smart energy consumption management for industries" },
+            effects: { energy: 4, economy: -2, employment: -2, sustainability: 2 },
+            feedback: {
+              fa: "مدیریت سمت تقاضا یکی از مؤثرترین راهکارهای مدیریت انرژی است که با استفاده از سیستم‌های هوشمند، الگوی مصرف را بهینه می‌کند. صنایع تشویق می‌شوند مصرف خود را در ساعات پیک کاهش دهند و از مشوق‌های مالی بهره‌مند شوند.",
+              en: "Demand-side management is one of the most effective energy management solutions that optimizes consumption patterns using smart systems. Industries are encouraged to reduce consumption during peak hours and benefit from financial incentives."
+            }
+          }
+        ]
+      },
+      {
+        year: 1406,
+        title: {
+          fa: "🌊 توسعه اقتصاد دریاپایه در کرانه‌های جنوب",
+          en: "🌊 Developing Marine Economy on Southern Shores"
+        },
+        text: {
+          fa: "منطقه ساحلی شما با دارا بودن بنادر طبیعی و دسترسی به آب‌های آزاد، پتانسیل بالایی برای توسعه اقتصاد دریاپایه دارد. کدام بخش را اولویت می‌دهی؟",
+          en: "Your coastal region, with natural ports and access to open waters, has high potential for developing a marine-based economy. Which sector do you prioritize?"
+        },
+        options: [
+          {
+            text: { fa: "🐟 سرمایه‌گذاری در آبزی‌پروری و پرورش ماهی در قفس", en: "🐟 Invest in aquaculture and cage fish farming" },
+            effects: { economy: 6, employment: 9, water: -2, sustainability: 3 },
+            feedback: {
+              fa: "آبزی‌پروری به عنوان یکی از بخش‌های اقتصاد دریاپایه، نقش مهمی در تأمین امنیت غذایی و ایجاد اشتغال پایدار دارد. پرورش ماهی در قفس با استفاده از فناوری‌های نوین، بازدهی بالایی دارد و نیاز به زمین و آب شیرین را کاهش می‌دهد.",
+              en: "Aquaculture, as one of the marine economy sectors, plays an important role in ensuring food security and creating sustainable employment. Cage fish farming using modern technologies has high efficiency and reduces the need for land and fresh water."
+            }
+          },
+          {
+            text: { fa: "🚢 توسعه زیرساخت‌های بندری و ترانزیت بین‌المللی", en: "🚢 Develop port infrastructure and international transit" },
+            effects: { economy: 11, employment: 6, sustainability: -2 },
+            feedback: {
+              fa: "توسعه بنادر و زیرساخت‌های حمل‌ونقل دریایی، منطقه را به یک قطب ترانزیتی تبدیل می‌کند. موقعیت استراتژیک ایران در کریدورهای شمال-جنوب و شرق-غرب، فرصت بی‌نظیری برای جذب سرمایه‌گذاری و ایجاد اشتغال در بخش حمل‌ونقل ایجاد می‌کند.",
+              en: "Developing ports and maritime transport infrastructure turns the region into a transit hub. Iran's strategic position in North-South and East-West corridors creates a unique opportunity to attract investment and create employment in transportation."
+            }
+          },
+          {
+            text: { fa: "♻️ توسعه گردشگری دریایی با رویکرد حفظ محیط‌زیست", en: "♻️ Develop marine tourism with environmental preservation" },
+            effects: { economy: 5, employment: 7, sustainability: 5, society: 4 },
+            feedback: {
+              fa: "گردشگری پایدار با حفظ اکوسیستم‌های حساس ساحلی و دریایی، ارزش افزوده بالایی ایجاد می‌کند. ایران دارای جاذبه‌های منحصربه‌فردی مانند جزایر مرجانی، جنگل‌های حرا، و سواحل ماسه‌ای است.",
+              en: "Sustainable tourism, while preserving sensitive coastal and marine ecosystems, creates high added value. Iran has unique attractions such as coral islands, mangrove forests, and sandy beaches."
+            }
+          }
+        ]
+      },
+      {
+        year: 1407,
+        title: {
+          fa: "💧 بحران آب و شیرین‌سازی دریا",
+          en: "💧 Water Crisis and Seawater Desalination"
+        },
+        text: {
+          fa: "پس از یک سال خشکسالی، ذخایر آب زیرزمینی منطقه به شدت کاهش یافته و تنش آبی به یک چالش جدی تبدیل شده است. چه راهکاری برای تأمین آب پایدار انتخاب می‌کنی؟",
+          en: "After a year of drought, the region's groundwater reserves have severely declined, and water stress has become a serious challenge. What solution do you choose for sustainable water supply?"
+        },
+        options: [
+          {
+            text: { fa: "🌊 احداث نیروگاه‌های شیرین‌سازی آب دریا با انرژی خورشیدی", en: "🌊 Build solar-powered seawater desalination plants" },
+            effects: { water: 11, energy: -2, economy: -2, sustainability: 6 },
+            feedback: {
+              fa: "شیرین‌سازی آب دریا با استفاده از انرژی خورشیدی، یک راهکار پایدار و سازگار با محیط‌زیست برای تأمین آب شیرین در مناطق ساحلی است. هزینه اولیه بالاست، اما در بلندمدت هزینه تمام شده آب شیرین کمتر از روش‌های سنتی است.",
+              en: "Solar-powered seawater desalination is a sustainable and environmentally friendly solution for supplying fresh water in coastal areas. The initial cost is high, but in the long run the cost of fresh water is lower than traditional methods."
+            }
+          },
+          {
+            text: { fa: "💧 اصلاح الگوی کشت و توسعه آبیاری تحت فشار", en: "💧 Reform cropping patterns and develop pressurized irrigation" },
+            effects: { water: 9, economy: 3, employment: 3, sustainability: 5 },
+            feedback: {
+              fa: "اصلاح الگوی کشت و جایگزینی محصولات پرمصرف با محصولات سازگار با اقلیم، همراه با توسعه آبیاری تحت فشار می‌تواند مصرف آب در بخش کشاورزی را به طور چشمگیری کاهش دهد. این روش در بسیاری از کشورهای کم‌آب با موفقیت اجرا شده است.",
+              en: "Reforming cropping patterns and replacing high-consumption crops with climate-adapted ones, along with developing pressurized irrigation, can significantly reduce agricultural water consumption. This method has been successfully implemented in many water-scarce countries."
+            }
+          },
+          {
+            text: { fa: "📡 مدیریت هوشمند توزیع آب با فناوری‌های نوین", en: "📡 Smart water distribution with modern technologies" },
+            effects: { water: 6, economy: 5, employment: 4 },
+            feedback: {
+              fa: "مدیریت هوشمند توزیع آب با استفاده از سنسورها، اینترنت اشیاء و هوش مصنوعی می‌تواند هدررفت آب در شبکه‌های توزیع را کاهش دهد. این سیستم‌ها با شناسایی نشت‌ها، کنترل فشار و مدیریت مصرف، به بهینه‌سازی توزیع آب کمک می‌کنند.",
+              en: "Smart water distribution management using sensors, IoT, and AI can reduce water loss in distribution networks. These systems help optimize distribution by detecting leaks, controlling pressure, and managing consumption."
+            }
+          }
+        ]
+      },
+      {
+        year: 1407,
+        title: {
+          fa: "👷 اشتغال پایدار و مهارت‌آموزی جوانان",
+          en: "👷 Sustainable Employment and Youth Skill Training"
+        },
+        text: {
+          fa: "نرخ بیکاری جوانان در منطقه به طور قابل توجهی افزایش یافته است. چگونه اشتغال پایدار و باکیفیتی برای جوانان ایجاد می‌کنی؟",
+          en: "Youth unemployment has significantly increased in the region. How do you create sustainable and quality employment for young people?"
+        },
+        options: [
+          {
+            text: { fa: "🎓 ایجاد مراکز مهارت‌آموزی فنی و حرفه‌ای با رویکرد صنعت محور", en: "🎓 Establish industry-oriented vocational training centers" },
+            effects: { employment: 11, economy: 4, society: 5 },
+            feedback: {
+              fa: "مراکز مهارت‌آموزی با رویکرد صنعت محور، جوانان را مستقیماً با نیازهای واقعی بازار کار آشنا می‌کنند. سرمایه‌گذاری در آموزش‌های فنی و حرفه‌ای یکی از مؤثرترین راهکارها برای کاهش بیکاری است.",
+              en: "Industry-oriented training centers directly familiarize youth with the real needs of the labor market. Investing in technical and vocational education is one of the most effective solutions for reducing unemployment."
+            }
+          },
+          {
+            text: { fa: "🏭 ایجاد شهرک‌های صنعتی تخصصی با اولویت صنایع ساحلی", en: "🏭 Create specialized industrial parks prioritizing coastal industries" },
+            effects: { employment: 8, economy: 9, sustainability: -2 },
+            feedback: {
+              fa: "شهرک‌های صنعتی تخصصی با تمرکز بر صنایع مرتبط با دریا مانند کشتی‌سازی، فرآوری محصولات دریایی و صنایع وابسته، می‌توانند اشتغال گسترده‌ای ایجاد کنند. استفاده از فناوری‌های پاک از الزامات این رویکرد است.",
+              en: "Specialized industrial parks focusing on sea-related industries such as shipbuilding and seafood processing can create extensive employment. Using clean technologies is a requirement of this approach."
+            }
+          },
+          {
+            text: { fa: "🌿 حمایت از کسب‌وکارهای دانش‌بنیان و استارتاپ‌های سبز", en: "🌿 Support knowledge-based businesses and green startups" },
+            effects: { employment: 6, economy: 6, sustainability: 8, society: 3 },
+            feedback: {
+              fa: "حوزه اقتصاد سبز و دانش‌بنیان یکی از سریع‌ترین بخش‌های در حال رشد در جهان است. حمایت از استارتاپ‌ها در حوزه‌هایی مانند انرژی‌های تجدیدپذیر، مدیریت پسماند و فناوری اطلاعات، ضمن ایجاد اشتغال، به حل چالش‌های زیست‌محیطی کمک می‌کند.",
+              en: "The green and knowledge-based economy is one of the fastest-growing sectors in the world. Supporting startups in areas like renewable energy, waste management, and IT helps create employment while addressing environmental challenges."
+            }
+          }
+        ]
+      },
+      {
+        year: 1408,
+        title: {
+          fa: "🏙️ توسعه شهری و مدیریت سیلاب‌های ساحلی",
+          en: "🏙️ Urban Development and Coastal Flood Management"
+        },
+        text: {
+          fa: "رشد جمعیت و توسعه بی‌رویه شهری در منطقه ساحلی، خطرات ناشی از سیلاب‌های فصلی و طوفان‌های دریایی را افزایش داده است. چگونه شهری مقاوم و پایدار طراحی می‌کنی؟",
+          en: "Population growth and unplanned urban development have increased risks from seasonal floods and sea storms. How do you design a resilient and sustainable city?"
+        },
+        options: [
+          {
+            text: { fa: "🏗️ ساخت مسکن مقاوم و زیرساخت‌های تاب‌آور در برابر سیل و طوفان", en: "🏗️ Build resilient housing and infrastructure against floods" },
+            effects: { economy: 6, employment: 8, society: 6, sustainability: 3 },
+            feedback: {
+              fa: "تاب‌آوری شهری به معنای توانایی یک شهر در مقاومت در برابر بلایای طبیعی و بازیابی سریع پس از آن است. طراحی ساختمان‌های مقاوم، ایجاد سیستم‌های زهکشی پیشرفته، و استفاده از مصالح بادوام، از مؤلفه‌های اصلی این رویکرد است.",
+              en: "Urban resilience means a city's ability to withstand natural disasters and recover quickly. Designing resistant buildings, creating advanced drainage systems, and using durable materials are key components of this approach."
+            }
+          },
+          {
+            text: { fa: "🌳 طراحی شهرهای هوشمند با رویکرد طبیعت‌محور", en: "🌳 Design smart cities with a nature-based approach" },
+            effects: { sustainability: 9, economy: 5, society: 5, energy: 3 },
+            feedback: {
+              fa: "شهرهای هوشمند با استفاده از فناوری‌های دیجیتال، به مدیریت بهینه منابع شهری کمک می‌کنند. رویکرد طبیعت‌محور به معنای ادغام عناصر طبیعی مانند پارک‌ها، بام‌های سبز و زیرساخت‌های سبز در بافت شهری است.",
+              en: "Smart cities use digital technologies to help optimally manage urban resources. The nature-based approach means integrating natural elements such as parks, green roofs, and green infrastructure into the urban fabric."
+            }
+          },
+          {
+            text: { fa: "🏘️ بازآفرینی بافت‌های فرسوده با رویکرد مشارکتی", en: "🏘️ Regenerate worn-out urban fabrics with participation" },
+            effects: { society: 8, employment: 5, economy: 3 },
+            feedback: {
+              fa: "بازآفرینی شهری به معنای نوسازی و بهسازی بافت‌های فرسوده با مشارکت ساکنین است. این رویکرد ضمن بهبود کیفیت زندگی، به حفظ هویت محله‌ها و جلوگیری از مهاجرت به حاشیه شهرها کمک می‌کند.",
+              en: "Urban regeneration means renovating and improving worn-out fabrics with residents' participation. This approach improves quality of life and helps preserve neighborhood identity."
+            }
+          }
+        ]
+      },
+      {
+        year: 1408,
+        title: {
+          fa: "♻️ مدیریت پسماند و مقابله با آلودگی دریایی",
+          en: "♻️ Waste Management and Combating Marine Pollution"
+        },
+        text: {
+          fa: "آلودگی پلاستیکی و تخلیه پسماندهای صنعتی به دریا، حیات اکوسیستم‌های ساحلی و دریایی را به شدت تهدید کرده است. برای حفظ محیط‌زیست دریایی چه اقداماتی انجام می‌دهی؟",
+          en: "Plastic pollution and industrial waste discharge into the sea have severely threatened coastal and marine ecosystems. What actions do you take to protect the marine environment?"
+        },
+        options: [
+          {
+            text: { fa: "🚯 اجرای سیاست‌های کاهش پلاستیک و جایگزینی با مواد تجدیدپذیر", en: "🚯 Implement plastic reduction policies" },
+            effects: { sustainability: 12, society: 3, economy: -2 },
+            feedback: {
+              fa: "آلودگی پلاستیکی یکی از چالش‌های بزرگ زیست‌محیطی قرن حاضر است. سیاست‌های کاهش پلاستیک شامل ممنوعیت استفاده از کیسه‌های پلاستیکی، ظروف یکبارمصرف و تشویق به استفاده از مواد تجدیدپذیر و زیست‌تخریب‌پذیر است.",
+              en: "Plastic pollution is one of the major environmental challenges of this century. Plastic reduction policies include banning plastic bags, disposable containers, and encouraging the use of renewable and biodegradable materials."
+            }
+          },
+          {
+            text: { fa: "♻️ احداث کارخانه‌های بازیافت و تبدیل پسماند به انرژی", en: "♻️ Build recycling plants and waste-to-energy facilities" },
+            effects: { sustainability: 8, economy: 6, employment: 6, energy: 3 },
+            feedback: {
+              fa: "تبدیل پسماند به انرژی یکی از فناوری‌های پیشرفته در مدیریت پسماند است که ضمن حل مشکل دفع زباله، انرژی پاک تولید می‌کند. این روش با سوزاندن پسماندها در دمای بالا و استفاده از حرارت برای تولید بخار و برق به تأمین انرژی کمک می‌کند.",
+              en: "Waste-to-energy is one of the advanced technologies in waste management that produces clean energy while solving the waste disposal problem. This method generates electricity by burning waste at high temperatures."
+            }
+          },
+          {
+            text: { fa: "🧹 پاکسازی سواحل و توسعه فرهنگ حفاظت از محیط‌زیست", en: "🧹 Beach cleanup and environmental culture development" },
+            effects: { sustainability: 6, society: 9, employment: 3 },
+            feedback: {
+              fa: "فرهنگ‌سازی زیست‌محیطی یکی از پایدارترین راهکارهای حفاظت از محیط‌زیست است. آموزش عمومی، برگزاری کمپین‌های پاکسازی ساحل، و افزایش آگاهی عمومی درباره پیامدهای آلودگی دریایی، به ایجاد فرهنگ مسئولیت‌پذیری زیستی کمک می‌کند.",
+              en: "Environmental culture-building is one of the most sustainable solutions for environmental protection. Public education, beach cleanup campaigns, and raising awareness about the consequences of marine pollution help create a culture of environmental responsibility."
+            }
+          }
+        ]
+      },
+      {
+        year: 1409,
+        title: {
+          fa: "🌐 همکاری‌های منطقه‌ای و دیپلماسی انرژی",
+          en: "🌐 Regional Cooperation and Energy Diplomacy"
+        },
+        text: {
+          fa: "ایران با داشتن مرزهای آبی گسترده و همسایگی با کشورهای مختلف، ظرفیت بالایی برای توسعه همکاری‌های منطقه‌ای در حوزه انرژی و تجارت دارد. چگونه از این ظرفیت استفاده می‌کنی؟",
+          en: "Iran, with extensive water borders and neighboring various countries, has high potential for developing regional cooperation in energy and trade. How do you use this potential?"
+        },
+        options: [
+          {
+            text: { fa: "🤝 توسعه صادرات انرژی پاک و برق تجدیدپذیر به کشورهای همسایه", en: "🤝 Develop exports of clean energy to neighboring countries" },
+            effects: { economy: 11, energy: 6, sustainability: 3 },
+            feedback: {
+              fa: "صادرات انرژی پاک به کشورهای همسایه، ضمن ایجاد درآمد ارزی، به توسعه اقتصادی منطقه کمک می‌کند. ایران با توجه به پتانسیل بالای انرژی خورشیدی و بادی، می‌تواند به یکی از صادرکنندگان عمده برق تجدیدپذیر در منطقه تبدیل شود.",
+              en: "Exporting clean energy to neighboring countries, while generating foreign currency income, contributes to the region's economic development. Given its high potential for solar and wind energy, Iran can become a major exporter of renewable electricity."
+            }
+          },
+          {
+            text: { fa: "🔗 ایجاد کریدور انرژی و حمل‌ونقل بین‌المللی شمال-جنوب", en: "🔗 Establish North-South International Corridor" },
+            effects: { economy: 13, employment: 6, energy: 3 },
+            feedback: {
+              fa: "کریدور شمال-جنوب به عنوان یکی از پروژه‌های زیرساختی مهم، ایران را به بازارهای آسیای میانه، قفقاز، روسیه و هند متصل می‌کند. این کریدور با کاهش مسافت و هزینه‌های حمل‌ونقل، به رونق اقتصادی منطقه کمک می‌کند.",
+              en: "The North-South Corridor, as one of the important infrastructure projects, connects Iran to Central Asia, the Caucasus, Russia, and India. This corridor helps the region's economic prosperity by reducing distance and transportation costs."
+            }
+          },
+          {
+            text: { fa: "🌱 سرمایه‌گذاری مشترک در فناوری‌های سبز با کشورهای منطقه", en: "🌱 Joint investment in green technologies" },
+            effects: { economy: 6, sustainability: 11, employment: 4, society: 3 },
+            feedback: {
+              fa: "همکاری فناورانه در حوزه انرژی سبز با کشورهای منطقه، ضمن کاهش هزینه‌های تحقیق و توسعه، به اشتراک‌گذاری دانش و تجربیات کمک می‌کند. این همکاری‌ها می‌تواند شامل پروژه‌های مشترک در حوزه انرژی خورشیدی، بادی و هیدروژن سبز باشد.",
+              en: "Technological cooperation in green energy with regional countries, while reducing R&D costs, helps share knowledge and experiences. These collaborations can include joint projects in solar, wind, and green hydrogen."
+            }
+          }
+        ]
+      },
+      {
+        year: 1409,
+        title: {
+          fa: "🔄 توسعه پایدار گردشگری دریایی و فرهنگی",
+          en: "🔄 Sustainable Development of Marine and Cultural Tourism"
+        },
+        text: {
+          fa: "منطقه ساحلی شما با داشتن جاذبه‌های تاریخی، فرهنگی و طبیعی منحصربه‌فرد، پتانسیل بالایی برای جذب گردشگران داخلی و بین‌المللی دارد. چگونه گردشگری را به گونه‌ای توسعه می‌دهی که به حفظ هویت فرهنگی و محیط‌زیست کمک کند؟",
+          en: "Your coastal region, with unique historical, cultural, and natural attractions, has high potential for attracting tourists. How do you develop tourism while preserving cultural identity and the environment?"
+        },
+        options: [
+          {
+            text: { fa: "🏖️ توسعه اقامتگاه‌های بوم‌گردی و تفرجگاه‌های ساحلی", en: "🏖️ Develop eco-lodges and coastal resorts" },
+            effects: { economy: 8, employment: 8, sustainability: 3, society: 4 },
+            feedback: {
+              fa: "بوم‌گردی به عنوان یکی از پایدارترین اشکال گردشگری، ضمن ایجاد درآمد برای جوامع محلی، به حفاظت از محیط‌زیست و فرهنگ بومی کمک می‌کند. توسعه اقامتگاه‌های سنتی با معماری بومی و استفاده از مصالح محلی، به جذب گردشگران علاقه‌مند به طبیعت و فرهنگ کمک می‌کند.",
+              en: "Ecotourism, as one of the most sustainable forms of tourism, helps protect the environment and indigenous culture while generating income for local communities. Developing traditional accommodations with local architecture helps attract nature and culture enthusiasts."
+            }
+          },
+          {
+            text: { fa: "🏛️ ثبت و معرفی میراث فرهنگی و تاریخی ساحل", en: "🏛️ Register and introduce coastal cultural heritage" },
+            effects: { economy: 6, employment: 5, society: 11 },
+            feedback: {
+              fa: "میراث فرهنگی هر منطقه، سرمایه‌ای ارزشمند و غیرقابل جایگزین است که می‌تواند به عنوان جاذبه گردشگری نقش مهمی در توسعه اقتصادی ایفا کند. این رویکرد ضمن حفظ هویت فرهنگی، به ایجاد اشتغال و رونق اقتصادی کمک می‌کند.",
+              en: "The cultural heritage of each region is a valuable and irreplaceable asset that can play an important role in economic development as a tourist attraction. This approach helps preserve cultural identity and create employment."
+            }
+          },
+          {
+            text: { fa: "🚤 توسعه ورزش‌های آبی و گردشگری ماجراجویی", en: "🚤 Develop water sports and adventure tourism" },
+            effects: { economy: 7, employment: 6, society: 4 },
+            feedback: {
+              fa: "گردشگری ماجراجویی یکی از بخش‌های رو به رشد صنعت گردشگری است که گردشگران خاص و پرهزینه را جذب می‌کند. توسعه زیرساخت‌های ورزش‌های آبی مانند غواصی، قایقرانی و پاراگلایدر با رعایت استانداردهای ایمنی، می‌تواند جذابیت منطقه را افزایش دهد.",
+              en: "Adventure tourism is one of the growing sectors that attracts special and high-spending tourists. Developing water sports infrastructure like diving, sailing, and paragliding with safety standards can increase the region's attractiveness."
+            }
+          }
+        ]
+      },
+      {
+        year: 1410,
+        title: {
+          fa: "🏛️ حکمرانی خوب و مشارکت مردمی در توسعه",
+          en: "🏛️ Good Governance and Public Participation"
+        },
+        text: {
+          fa: "برای دستیابی به توسعه پایدار و فراگیر، به نهادهای کارآمد، شفاف و مشارکتی نیاز داریم. چگونه ساختار حکمرانی را طراحی می‌کنی؟",
+          en: "To achieve sustainable and inclusive development, we need efficient, transparent, and participatory institutions. How do you design the governance structure?"
+        },
+        options: [
+          {
+            text: { fa: "🗳️ تشکیل شوراهای توسعه محلی با حضور نمایندگان اقشار مختلف", en: "🗳️ Form local development councils" },
+            effects: { society: 12, economy: 3, sustainability: 3 },
+            feedback: {
+              fa: "شوراهای توسعه محلی، بستر مناسبی برای مشارکت شهروندان در فرآیند تصمیم‌گیری و برنامه‌ریزی توسعه منطقه فراهم می‌کنند. این شوراها با حضور نمایندگان گروه‌های مختلف، به تعادل منافع و اولویت‌بندی پروژه‌ها بر اساس نیازهای واقعی منطقه کمک می‌کنند.",
+              en: "Local development councils provide a suitable platform for citizen participation in decision-making and regional development planning. These councils help balance interests and prioritize projects based on the region's real needs."
+            }
+          },
+          {
+            text: { fa: "📊 ایجاد سیستم شفافیت مالی و نظارت الکترونیک", en: "📊 Create financial transparency and electronic oversight" },
+            effects: { society: 8, economy: 5, employment: 3 },
+            feedback: {
+              fa: "شفافیت و مسئولیت‌پذیری از ارکان اصلی حکمرانی خوب است. ایجاد سیستم‌های دیجیتال برای نظارت بر پروژه‌ها، بودجه‌بندی و عملکرد نهادها، ضمن کاهش فساد، باعث افزایش اعتماد عمومی می‌شود.",
+              en: "Transparency and accountability are key pillars of good governance. Creating digital systems to monitor projects, budgeting, and institutional performance increases public trust while reducing corruption."
+            }
+          },
+          {
+            text: { fa: "🤝 توسعه مشارکت عمومی-خصوصی برای پروژه‌های زیرساختی", en: "🤝 Develop public-private partnership" },
+            effects: { economy: 11, employment: 6, society: 3 },
+            feedback: {
+              fa: "مشارکت عمومی-خصوصی به عنوان یک مدل تأمین مالی کارآمد، امکان استفاده از سرمایه و تخصص بخش خصوصی را برای اجرای پروژه‌های زیرساختی فراهم می‌کند. این رویکرد در بسیاری از کشورها برای توسعه زیرساخت‌های حمل‌ونقل، انرژی و آب با موفقیت اجرا شده است.",
+              en: "Public-private partnership, as an efficient financing model, enables the use of private sector capital and expertise for infrastructure projects. This approach has been successfully implemented in many countries."
+            }
+          }
+        ]
+      },
+      {
+        year: 1410,
+        title: {
+          fa: "🌿 اقتصاد سبز و آینده‌نگری زیست‌محیطی",
+          en: "🌿 Green Economy and Environmental Foresight"
+        },
+        text: {
+          fa: "در آستانه سال ۱۴۱۰، نیاز به تحول اساسی در رویکرد توسعه اقتصادی به سمت اقتصاد سبز و پایدار احساس می‌شود. چگونه رشد اقتصادی را با حفظ محیط‌زیست تلفیق می‌کنی؟",
+          en: "On the eve of 1410, there is a need for a fundamental transformation towards a green and sustainable economy. How do you combine economic growth with environmental preservation?"
+        },
+        options: [
+          {
+            text: { fa: "🌳 احیای جنگل‌های حرا و توسعه اکوسیستم‌های ساحلی", en: "🌳 Restore mangrove forests and coastal ecosystems" },
+            effects: { sustainability: 14, water: 3, society: 3 },
+            feedback: {
+              fa: "جنگل‌های حرا (مانگرو) یکی از ارزشمندترین اکوسیستم‌های ساحلی هستند که نقش مهمی در تثبیت سواحل، جذب کربن، تأمین زیستگاه آبزیان و حفاظت در برابر طوفان‌ها ایفا می‌کنند. احیای این جنگل‌ها به بهبود معیشت جوامع محلی و توسعه گردشگری طبیعی نیز کمک می‌کند.",
+              en: "Mangrove forests are one of the most valuable coastal ecosystems, playing an important role in stabilizing coasts, carbon sequestration, providing aquatic habitat, and protection against storms. Restoring them also helps improve local livelihoods and nature tourism."
+            }
+          },
+          {
+            text: { fa: "⚡ سرمایه‌گذاری گسترده در انرژی‌های تجدیدپذیر و ذخیره‌سازی", en: "⚡ Extensive investment in renewable energy and storage" },
+            effects: { energy: 11, sustainability: 11, economy: 3, employment: 3 },
+            feedback: {
+              fa: "گذر از اقتصاد مبتنی بر سوخت‌های فسیلی به اقتصاد سبز، نیازمند سرمایه‌گذاری گسترده در انرژی‌های تجدیدپذیر است. توسعه سیستم‌های ذخیره‌سازی انرژی مانند باتری‌های پیشرفته و هیدروژن سبز، به پایداری شبکه برق کمک می‌کند.",
+              en: "Transitioning from a fossil fuel-based economy to a green economy requires extensive investment in renewable energy. Developing energy storage systems like advanced batteries and green hydrogen helps grid stability."
+            }
+          },
+          {
+            text: { fa: "🚲 توسعه حمل‌ونقل پاک و زیرساخت‌های دوستدار محیط‌زیست", en: "🚲 Develop clean transportation and eco-friendly infrastructure" },
+            effects: { sustainability: 9, economy: 3, employment: 5, energy: 3 },
+            feedback: {
+              fa: "حمل‌ونقل پاک با استفاده از خودروهای برقی، هیبریدی و حمل‌ونقل عمومی با سوخت پاک، نقش مهمی در کاهش آلودگی هوا و مصرف انرژی ایفا می‌کند. توسعه زیرساخت‌های دوچرخه‌سواری و پیاده‌روی به ایجاد شهرهای سالم و پایدار کمک می‌کند.",
+              en: "Clean transportation using electric and hybrid vehicles and public transport with clean fuel plays an important role in reducing air pollution and energy consumption. Developing cycling and walking infrastructure helps create healthy and sustainable cities."
+            }
+          }
+        ]
+      },
+      {
+        year: 1406,
+        title: {
+          fa: "🏥 نظام سلامت و بهداشت عمومی در مناطق ساحلی",
+          en: "🏥 Health System and Public Health in Coastal Areas"
+        },
+        text: {
+          fa: "منطقه ساحلی با چالش‌هایی در حوزه دسترسی به خدمات سلامت مواجه است. مراکز درمانی محدود و پراکنده هستند. چگونه نظام سلامت را بهبود می‌دهی؟",
+          en: "The coastal region faces challenges in accessing health services. Medical centers are limited and scattered. How do you improve the health system?"
+        },
+        options: [
+          {
+            text: { fa: "🏥 احداث مراکز درمانی تخصصی و اورژانس‌های دریایی", en: "🏥 Build specialized medical centers and marine emergency services" },
+            effects: { society: 12, employment: 6, economy: 3 },
+            feedback: {
+              fa: "دسترسی عادلانه به خدمات سلامت، یکی از شاخص‌های مهم توسعه است. احداث مراکز درمانی تخصصی در مناطق ساحلی، به ویژه در زمینه بیماری‌های گرمسیری و حوادث دریایی، می‌تواند جان بسیاری را نجات دهد. ایجاد اورژانس‌های دریایی با آمبولانس‌های آبی و بالگرد ضروری است.",
+              en: "Equitable access to health services is an important indicator of development. Building specialized medical centers in coastal areas, especially for tropical diseases and marine accidents, can save many lives. Establishing marine emergency services is essential."
+            }
+          },
+          {
+            text: { fa: "📱 توسعه خدمات پزشکی از راه دور و پایش سلامت هوشمند", en: "📱 Develop telemedicine and smart health monitoring" },
+            effects: { society: 9, economy: 5, employment: 3 },
+            feedback: {
+              fa: "پزشکی از راه دور با استفاده از فناوری‌های ارتباطی، امکان ارائه خدمات تشخیصی و درمانی به مناطق دورافتاده را فراهم می‌کند. این روش با کاهش نیاز به جابجایی بیماران، هزینه‌ها را کاهش و دسترسی به خدمات تخصصی را افزایش می‌دهد.",
+              en: "Telemedicine, using communication technologies, enables diagnostic and treatment services to remote areas. This method reduces costs by decreasing the need to move patients and increases access to specialized services."
+            }
+          },
+          {
+            text: { fa: "🧘 برنامه‌های پیشگیری و ارتقای سلامت جامعه‌محور", en: "🧘 Community-based prevention and health promotion" },
+            effects: { society: 9, sustainability: 3, employment: 3 },
+            feedback: {
+              fa: "پیشگیری بهتر از درمان است. برنامه‌های آموزشی در زمینه تغذیه سالم، ورزش، بهداشت فردی و پیشگیری از بیماری‌ها می‌تواند هزینه‌های نظام سلامت را کاهش دهد. مشارکت جوامع محلی در این برنامه‌ها اثربخشی آنها را افزایش می‌دهد.",
+              en: "Prevention is better than cure. Educational programs in healthy nutrition, exercise, personal hygiene, and disease prevention can reduce health system costs. Local community participation increases their effectiveness."
+            }
+          }
+        ]
+      },
+      {
+        year: 1407,
+        title: {
+          fa: "🎓 تحول در آموزش و توانمندسازی نسل آینده",
+          en: "🎓 Transforming Education and Empowering Future Generations"
+        },
+        text: {
+          fa: "سیستم آموزشی منطقه با چالش‌هایی مانند کمبود امکانات و روش‌های سنتی تدریس مواجه است. چگونه نظام آموزشی را متحول می‌کنی؟",
+          en: "The region's education system faces challenges such as lack of facilities and traditional teaching methods. How do you transform the education system?"
+        },
+        options: [
+          {
+            text: { fa: "💻 هوشمندسازی مدارس و توسعه آموزش دیجیتال", en: "💻 Smart schools and digital education development" },
+            effects: { society: 12, employment: 4, economy: 3 },
+            feedback: {
+              fa: "آموزش دیجیتال یکی از مهم‌ترین تحولات حوزه آموزش در قرن ۲۱ است که دسترسی عادلانه به آموزش باکیفیت را برای همه دانش‌آموزان فراهم می‌کند. تجهیز مدارس به فناوری‌های نوین و آموزش معلمان از ارکان این تحول هستند.",
+              en: "Digital education is one of the most important transformations in 21st-century education, providing equitable access to quality education. Equipping schools with modern technologies and training teachers are pillars of this transformation."
+            }
+          },
+          {
+            text: { fa: "🌊 ایجاد رشته‌های تخصصی علوم دریایی و محیط‌زیست", en: "🌊 Establish marine science and environment programs" },
+            effects: { employment: 9, economy: 6, society: 4 },
+            feedback: {
+              fa: "با توجه به اهمیت اقتصاد دریاپایه، ایجاد رشته‌های تخصصی در حوزه علوم دریایی، اقیانوس‌شناسی، مهندسی دریا و زیست‌فناوری دریایی می‌تواند نیروی متخصص مورد نیاز را تأمین کند. همکاری با دانشگاه‌های معتبر بین‌المللی به ارتقای سطح علمی کمک می‌کند.",
+              en: "Given the importance of the marine economy, establishing specialized programs in marine sciences, oceanography, marine engineering, and marine biotechnology can supply the needed workforce. Collaborating with reputable international universities helps elevate the scientific level."
+            }
+          },
+          {
+            text: { fa: "🏫 توسعه مدارس سبز با رویکرد آموزش پایداری", en: "🏫 Develop green schools with sustainability education" },
+            effects: { sustainability: 9, society: 7, employment: 3 },
+            feedback: {
+              fa: "مدارس سبز با طراحی معماری سازگار با محیط‌زیست، استفاده از انرژی‌های تجدیدپذیر و آموزش مفاهیم پایداری به دانش‌آموزان، نسل آینده را با اصول توسعه پایدار آشنا می‌کنند و فرهنگ زیست‌محیطی را از دوران کودکی نهادینه می‌کنند.",
+              en: "Green schools, with environmentally friendly architectural design, renewable energy use, and teaching sustainability concepts to students, familiarize the next generation with sustainable development principles and institutionalize environmental culture from childhood."
+            }
+          }
+        ]
+      },
+      {
+        year: 1408,
+        title: {
+          fa: "💡 نوآوری و فناوری‌های پیشرفته در اقتصاد دریا",
+          en: "💡 Innovation and Advanced Technologies in Marine Economy"
+        },
+        text: {
+          fa: "جهان امروز شاهد تحولات شگرفی در حوزه فناوری‌های مرتبط با دریا است. چگونه از این فناوری‌ها برای توسعه منطقه ساحلی استفاده می‌کنی؟",
+          en: "Today's world is witnessing tremendous transformations in marine technologies. How do you use these technologies for the coastal region's development?"
+        },
+        options: [
+          {
+            text: { fa: "🤖 بهره‌گیری از هوش مصنوعی و اتوماسیون در صنایع دریایی", en: "🤖 Utilize AI and automation in marine industries" },
+            effects: { economy: 12, employment: -2, energy: 3 },
+            feedback: {
+              fa: "هوش مصنوعی و اتوماسیون در بخش دریایی می‌تواند بهره‌وری را افزایش دهد و هزینه‌ها را کاهش دهد. کاربردهای این فناوری شامل ناوبری خودکار کشتی‌ها، مدیریت بنادر، پیش‌بینی شرایط آب‌وهوایی دریایی و مدیریت مزارع پرورش آبزیان است.",
+              en: "AI and automation in the marine sector can increase productivity and reduce costs. Applications include autonomous ship navigation, port management, marine weather forecasting, and aquaculture farm management."
+            }
+          },
+          {
+            text: { fa: "🧪 توسعه بیوتکنولوژی و زیست‌فناوری از منابع دریایی", en: "🧪 Develop biotechnology from marine resources" },
+            effects: { economy: 9, sustainability: 6, employment: 5 },
+            feedback: {
+              fa: "دریاها منبع غنی از موجودات زنده با ترکیبات زیستی منحصربه‌فرد هستند که در صنایع دارویی، غذایی و آرایشی کاربرد دارند. بیوتکنولوژی دریایی با استخراج و تولید ترکیبات ارزشمند از جلبک‌ها و میکروارگانیسم‌های دریایی، می‌تواند به صنعتی با ارزش افزوده بالا تبدیل شود.",
+              en: "Seas are rich sources of living organisms with unique biological compounds used in pharmaceutical, food, and cosmetic industries. Marine biotechnology can become a high value-added industry by extracting valuable compounds from algae and marine microorganisms."
+            }
+          },
+          {
+            text: { fa: "🛰️ فناوری‌های فضایی و سنجش از دور برای پایش محیط‌زیست", en: "🛰️ Space technologies for environmental monitoring" },
+            effects: { sustainability: 9, economy: 6, employment: 4 },
+            feedback: {
+              fa: "ماهواره‌های سنجش از دور و پهپادها امکان پایش مداوم و دقیق محیط‌زیست دریایی را فراهم می‌کنند. این فناوری‌ها برای شناسایی آلودگی‌های نفتی، پایش کیفیت آب، پیش‌بینی جذر و مد و ردیابی کشتی‌های غیرمجاز کاربرد دارند.",
+              en: "Remote sensing satellites and drones enable continuous and accurate monitoring of the marine environment. These technologies are used to identify oil pollution, monitor water quality, predict tides, and track unauthorized vessels."
+            }
+          }
+        ]
+      },
+      {
+        year: 1409,
+        title: {
+          fa: "💰 توسعه نظام مالی و تأمین مالی پروژه‌های ساحلی",
+          en: "💰 Financial System Development and Financing Coastal Projects"
+        },
+        text: {
+          fa: "پروژه‌های توسعه ساحلی نیازمند سرمایه‌گذاری هنگفتی هستند که تأمین آنها از طریق بودجه دولتی به تنهایی امکان‌پذیر نیست. چگونه منابع مالی متنوع تأمین می‌کنی؟",
+          en: "Coastal development projects require massive investment that cannot be provided through government budget alone. How do you provide diverse financial resources?"
+        },
+        options: [
+          {
+            text: { fa: "🏦 بهره‌گیری از ابزارهای مالی اسلامی مانند صکوک دریایی", en: "🏦 Utilize Islamic financial instruments like marine sukuk" },
+            effects: { economy: 12, employment: 3, society: 3 },
+            feedback: {
+              fa: "صکوک دریایی به عنوان یکی از ابزارهای مالی اسلامی، امکان جذب سرمایه‌های خرد و کلان را برای پروژه‌های مرتبط با دریا فراهم می‌کند. این ابزار با تکیه بر اصول مشارکت و اجاره، هم برای سرمایه‌گذاران جذاب است و هم با موازین شرعی هماهنگی دارد.",
+              en: "Marine sukuk, as one of the Islamic financial instruments, enables attracting micro and macro capital for sea-related projects. This instrument, relying on partnership and lease principles, is attractive for investors and Sharia-compliant."
+            }
+          },
+          {
+            text: { fa: "📈 ایجاد صندوق‌های سرمایه‌گذاری خطرپذیر تخصصی حوزه دریا", en: "📈 Establish specialized marine venture capital funds" },
+            effects: { economy: 9, employment: 6 },
+            feedback: {
+              fa: "صندوق‌های سرمایه‌گذاری خطرپذیر با پذیرش ریسک‌های بالاتر، به حمایت از ایده‌های نوآورانه و استارتاپ‌های حوزه دریا می‌پردازند. این صندوق‌ها با سرمایه‌گذاری در شرکت‌های دانش‌بنیان، به توسعه کسب‌وکارهای جدید و ایجاد اشتغال کمک می‌کنند.",
+              en: "Venture capital funds, by accepting higher risks, support innovative ideas and marine startups. These funds help develop new businesses and create employment by investing in knowledge-based companies."
+            }
+          },
+          {
+            text: { fa: "🤝 گسترش سرمایه‌گذاری جمعی برای پروژه‌های اجتماعی و محیط‌زیستی", en: "🤝 Expand crowdfunding for social and environmental projects" },
+            effects: { society: 9, economy: 6, employment: 3 },
+            feedback: {
+              fa: "سرمایه‌گذاری جمعی به مردم عادی امکان می‌دهد تا در پروژه‌های مختلف با مبالغ کم سرمایه‌گذاری کنند. این روش به ویژه برای پروژه‌های اجتماعی، فرهنگی و محیط‌زیستی که بازدهی مالی بالا ندارند اما ارزش اجتماعی زیادی دارند، مناسب است.",
+              en: "Crowdfunding allows ordinary people to invest in various projects with small amounts. This method is especially suitable for social, cultural, and environmental projects that don't have high financial returns but have great social value."
+            }
+          }
+        ]
+      },
+      {
+        year: 1410,
+        title: {
+          fa: "🌍 چشم‌انداز ایران ۱۴۱۰ و جایگاه منطقه ساحلی",
+          en: "🌍 Iran 1410 Vision and Coastal Region's Position"
+        },
+        text: {
+          fa: "در آستانه سال ۱۴۱۰، چشم‌انداز بلندمدت منطقه ساحلی را چگونه ترسیم می‌کنی؟ این منطقه چه نقشی در آینده ایران می‌تواند داشته باشد؟",
+          en: "On the eve of 1410, how do you envision the long-term outlook for the coastal region? What role can it play in Iran's future?"
+        },
+        options: [
+          {
+            text: { fa: "🌟 تبدیل به قطب اقتصادی و تجاری خاورمیانه", en: "🌟 Transform into the economic hub of the Middle East" },
+            effects: { economy: 14, employment: 8, society: 3 },
+            feedback: {
+              fa: "منطقه ساحلی جنوب ایران با موقعیت استراتژیک در کریدورهای بین‌المللی و دسترسی به آب‌های آزاد، پتانسیل تبدیل شدن به یک قطب اقتصادی و تجاری در سطح منطقه را دارد. ایجاد مناطق آزاد تجاری، توسعه بنادر مدرن و جذب سرمایه‌گذاری خارجی می‌تواند این منطقه را به مرکز اتصال شرق و غرب تبدیل کند.",
+              en: "Iran's southern coastal region, with its strategic position in international corridors and access to open waters, has the potential to become a regional economic and commercial hub. Creating free trade zones, developing modern ports, and attracting foreign investment can transform it into a center connecting East and West."
+            }
+          },
+          {
+            text: { fa: "🌿 تبدیل به الگوی جهانی توسعه پایدار ساحلی", en: "🌿 Become a global model of sustainable coastal development" },
+            effects: { sustainability: 14, economy: 6, society: 5 },
+            feedback: {
+              fa: "با بهره‌گیری از فناوری‌های سبز، توسعه هماهنگ با طبیعت و مشارکت جوامع محلی، منطقه ساحلی ایران می‌تواند به الگویی برای توسعه پایدار در منطقه تبدیل شود. تجربه کشورهایی مانند کاستاریکا و نروژ نشان می‌دهد که توسعه اقتصادی و حفاظت از محیط‌زیست می‌توانند هم‌زمان پیش بروند.",
+              en: "By utilizing green technologies, development in harmony with nature, and participation of local communities, Iran's coastal region can become a model for sustainable development in the region. The experience of countries like Costa Rica and Norway shows that economic development and environmental protection can progress simultaneously."
+            }
+          },
+          {
+            text: { fa: "🤝 پل ارتباطی فرهنگی و اقتصادی بین شرق و غرب", en: "🤝 Cultural and economic bridge between East and West" },
+            effects: { society: 12, economy: 8, sustainability: 3 },
+            feedback: {
+              fa: "ایران همواره در طول تاریخ به عنوان پل ارتباطی میان تمدن‌های بزرگ شرق و غرب نقش آفرینی کرده است. منطقه ساحلی می‌تواند با احیای این نقش تاریخی، به مرکز تبادل فرهنگی، علمی و اقتصادی تبدیل شود. ایجاد مراکز علمی و فرهنگی، برگزاری رویدادهای بین‌المللی و توسعه گردشگری فرهنگی به تحقق این چشم‌انداز کمک می‌کند.",
+              en: "Iran has always played a role as a bridge between great Eastern and Western civilizations throughout history. The coastal region can become a center of cultural, scientific, and economic exchange by reviving this historical role. Establishing scientific and cultural centers, holding international events, and developing cultural tourism help realize this vision."
+            }
+          }
+        ]
+      },
+      {
+        year: 1409,
+        title: {
+          fa: "🌐 تعهدات اقلیمی بین‌المللی و توافقنامه پاریس",
+          en: "🌐 International Climate Commitments and the Paris Agreement"
+        },
+        text: {
+          fa: "جامعه جهانی از کشورها می‌خواهد سهم مشخصی در کاهش انتشار گازهای گلخانه‌ای بر عهده بگیرند. چگونه منطقه ساحلی خود را با تعهدات اقلیمی بین‌المللی همسو می‌کنی؟",
+          en: "The international community expects countries to take a clear share in reducing greenhouse gas emissions. How do you align your coastal region with international climate commitments?"
+        },
+        options: [
+          {
+            text: { fa: "📉 تدوین برنامه ملی کاهش کربن با گزارش‌دهی شفاف بین‌المللی", en: "📉 Draft a national carbon-reduction plan with transparent international reporting" },
+            effects: { sustainability: 9, global: 12, economy: 2 },
+            feedback: {
+              fa: "پایبندی به تعهدات اقلیمی بین‌المللی و گزارش‌دهی شفاف، اعتبار دیپلماتیک کشور را افزایش می‌دهد و مسیر را برای دسترسی به صندوق‌های اقلیمی و فناوری‌های سبز جهانی هموار می‌کند. این رویکرد نشان‌دهنده مسئولیت‌پذیری در قبال جامعه جهانی است.",
+              en: "Adhering to international climate commitments and transparent reporting increases a country's diplomatic credibility and opens access to global climate funds and green technologies. This approach demonstrates responsibility toward the international community."
+            }
+          },
+          {
+            text: { fa: "🤝 مشارکت در صندوق‌های اقلیمی مشترک و انتقال فناوری سبز", en: "🤝 Join joint climate funds and green technology transfer" },
+            effects: { sustainability: 7, global: 10, economy: 5, employment: 3 },
+            feedback: {
+              fa: "مشارکت در صندوق‌های اقلیمی بین‌المللی مانند صندوق سبز اقلیم، امکان دریافت وام‌های کم‌بهره و انتقال فناوری‌های پاک را فراهم می‌کند. این همکاری‌ها معمولاً همراه با آموزش نیروی انسانی و تبادل تجربه با کشورهای پیشرو است.",
+              en: "Participating in international climate funds such as the Green Climate Fund enables low-interest loans and clean technology transfer, usually paired with workforce training and knowledge exchange with leading countries."
+            }
+          },
+          {
+            text: { fa: "⚙️ اولویت دادن به رشد صنعتی سریع بدون تعهد فوری اقلیمی", en: "⚙️ Prioritize rapid industrial growth without immediate climate commitment" },
+            effects: { economy: 8, employment: 5, sustainability: -5, global: -6 },
+            feedback: {
+              fa: "تمرکز صرف بر رشد صنعتی بدون توجه به تعهدات اقلیمی، می‌تواند در کوتاه‌مدت اقتصاد را تقویت کند، اما در بلندمدت به انزوای دیپلماتیک، از دست رفتن فرصت‌های سرمایه‌گذاری سبز و آسیب‌های زیست‌محیطی جدی منجر می‌شود.",
+              en: "Focusing solely on industrial growth without climate commitments can boost the economy short-term, but long-term it risks diplomatic isolation, lost green-investment opportunities, and serious environmental damage."
+            }
+          }
+        ]
+      },
+      {
+        year: 1409,
+        title: {
+          fa: "📊 رتبه‌بندی جهانی رقابت‌پذیری و جذب سرمایه‌گذاری خارجی",
+          en: "📊 Global Competitiveness Ranking and Foreign Investment"
+        },
+        text: {
+          fa: "سرمایه‌گذاران بین‌المللی پیش از ورود به یک منطقه، شاخص‌های رقابت‌پذیری جهانی مانند سهولت کسب‌وکار، ثبات قوانین و زیرساخت دیجیتال را بررسی می‌کنند. چگونه جایگاه جهانی منطقه را ارتقا می‌دهی؟",
+          en: "International investors examine global competitiveness indicators — ease of doing business, regulatory stability, and digital infrastructure — before entering a region. How do you improve the region's global standing?"
+        },
+        options: [
+          {
+            text: { fa: "📝 ساده‌سازی مقررات و ایجاد پنجره واحد سرمایه‌گذاری خارجی", en: "📝 Simplify regulations and create a one-stop shop for foreign investment" },
+            effects: { economy: 10, global: 9, employment: 4 },
+            feedback: {
+              fa: "پنجره واحد سرمایه‌گذاری با کاهش بروکراسی و تسریع صدور مجوزها، جایگاه کشور را در رتبه‌بندی‌های جهانی سهولت کسب‌وکار بهبود می‌بخشد و اعتماد سرمایه‌گذاران بین‌المللی را افزایش می‌دهد.",
+              en: "A one-stop investment window reduces bureaucracy and speeds up permits, improving the country's position in global ease-of-doing-business rankings and boosting investor confidence."
+            }
+          },
+          {
+            text: { fa: "🌐 توسعه زیرساخت دیجیتال و دولت الکترونیک برای شفافیت", en: "🌐 Develop digital infrastructure and e-government for transparency" },
+            effects: { global: 11, society: 5, economy: 5 },
+            feedback: {
+              fa: "دولت الکترونیک و زیرساخت دیجیتال شفاف، فساد اداری را کاهش می‌دهد و فرآیندهای اداری را برای شرکای بین‌المللی قابل پیش‌بینی‌تر می‌کند؛ عاملی که در همه شاخص‌های رقابت‌پذیری جهانی وزن بالایی دارد.",
+              en: "E-government and transparent digital infrastructure reduce administrative corruption and make processes more predictable for international partners — a factor weighted heavily in global competitiveness indices."
+            }
+          },
+          {
+            text: { fa: "🏆 میزبانی رویدادهای اقتصادی و نمایشگاه‌های بین‌المللی", en: "🏆 Host international economic events and exhibitions" },
+            effects: { global: 8, economy: 7, society: 3 },
+            feedback: {
+              fa: "میزبانی نمایشگاه‌ها و اجلاس‌های اقتصادی بین‌المللی، منطقه را در معرض دید سرمایه‌گذاران و رسانه‌های جهانی قرار می‌دهد و فرصت‌های تجاری و همکاری‌های علمی-فناورانه جدیدی ایجاد می‌کند.",
+              en: "Hosting international exhibitions and economic summits puts the region in front of global investors and media, creating new trade opportunities and scientific-technological collaborations."
+            }
+          }
+        ]
+      },
+      {
+        year: 1410,
+        title: {
+          fa: "🎓 شبکه‌سازی علمی جهانی و همکاری دانشگاهی",
+          en: "🎓 Global Scientific Networking and Academic Cooperation"
+        },
+        text: {
+          fa: "برای این‌که دستاوردهای منطقه در سطح بین‌المللی دیده شود، باید پیوندهای علمی و دانشگاهی با جهان تقویت شود. چه استراتژی را برای دیپلماسی علمی انتخاب می‌کنی؟",
+          en: "For the region's achievements to be recognized internationally, scientific and academic ties with the world must strengthen. What strategy do you choose for science diplomacy?"
+        },
+        options: [
+          {
+            text: { fa: "🔬 برگزاری مشترک کنفرانس‌های علمی بین‌المللی با دانشگاه‌های معتبر", en: "🔬 Co-host international scientific conferences with reputable universities" },
+            effects: { global: 10, society: 5, economy: 3 },
+            feedback: {
+              fa: "برگزاری مشترک کنفرانس‌های علمی، پژوهشگران داخلی را در معرض شبکه‌های علمی جهانی قرار می‌دهد، امکان انتشار مشترک مقالات را فراهم می‌کند و اعتبار علمی بین‌المللی منطقه را بالا می‌برد.",
+              en: "Co-hosting scientific conferences exposes local researchers to global scientific networks, enables joint publications, and raises the region's international scientific credibility."
+            }
+          },
+          {
+            text: { fa: "🎓 راه‌اندازی برنامه‌های تبادل دانشجو و بورس تحصیلی مشترک", en: "🎓 Launch student exchange programs and joint scholarships" },
+            effects: { global: 8, society: 7, employment: 3 },
+            feedback: {
+              fa: "برنامه‌های تبادل دانشجو، درک متقابل فرهنگی را افزایش می‌دهد و نسل جدیدی از متخصصان را با شبکه‌های ارتباطی بین‌المللی پرورش می‌دهد که در آینده می‌توانند پل ارتباطی توسعه بین‌المللی باشند.",
+              en: "Student exchange programs increase mutual cultural understanding and cultivate a new generation of professionals with international networks who can become bridges for future international development."
+            }
+          },
+          {
+            text: { fa: "📚 تمرکز صرف بر آموزش داخلی بدون اولویت تعامل بین‌المللی", en: "📚 Focus solely on domestic education without international engagement" },
+            effects: { society: 5, global: -4, economy: 2 },
+            feedback: {
+              fa: "تقویت آموزش داخلی ارزشمند است، اما بی‌توجهی به تعامل علمی بین‌المللی می‌تواند فرصت‌های همکاری، انتقال دانش روز دنیا و دیده‌شدن دستاوردهای علمی منطقه در سطح جهانی را محدود کند.",
+              en: "Strengthening domestic education is valuable, but neglecting international scientific engagement can limit collaboration opportunities, the transfer of cutting-edge knowledge, and global visibility for the region's scientific achievements."
+            }
+          }
+        ]
+      }
+    ];
+
+    // ================================================================
+    // بخش ۳: وضعیت بازی
+    // ================================================================
+    var gameData = {
+      role: null,
+      step: 0,
+      lang: 'fa',
+      theme: 'dark',
+      sound: true,
+      playerName: '',
+      stats: {
+        energy: 50,
+        economy: 50,
+        water: 50,
+        employment: 50,
+        sustainability: 50,
+        society: 50,
+        global: 50
+      },
+      achievements: [],
+      history: [],
+      resultSaved: false
+    };
+
+    // بارگذاری تنظیمات ذخیره‌شده
+    try {
+      var savedLang = localStorage.getItem('iran1410_lang');
+      if (savedLang === 'fa' || savedLang === 'en') gameData.lang = savedLang;
+      var savedTheme = localStorage.getItem('iran1410_theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') gameData.theme = savedTheme;
+      if (localStorage.getItem('iran1410_sound') === 'false') gameData.sound = false;
+    } catch (e) {}
+
+    // ================================================================
+    // بخش ۳.۱: ذخیره و بازیابی پیشرفت بازی (روی همین مرورگر)
+    // ================================================================
+    var PROGRESS_KEY = 'iran1410_progress_v2';
+    var LEADERBOARD_KEY = 'iran1410_leaderboard_v2';
+
+    function saveProgress() {
+      try {
+        var snapshot = {
+          role: gameData.role,
+          step: gameData.step,
+          stats: gameData.stats,
+          achievements: gameData.achievements,
+          playerName: gameData.playerName,
+          history: gameData.history
+        };
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(snapshot));
+      } catch (e) {}
+    }
+
+    function loadProgress() {
+      try {
+        var raw = localStorage.getItem(PROGRESS_KEY);
+        if (!raw) return null;
+        var data = JSON.parse(raw);
+        if (!data || typeof data.step !== 'number' || !data.role) return null;
+        return data;
+      } catch (e) { return null; }
+    }
+
+    function clearProgress() {
+      try { localStorage.removeItem(PROGRESS_KEY); } catch (e) {}
+    }
+
+    function getLeaderboard() {
+      try {
+        var raw = localStorage.getItem(LEADERBOARD_KEY);
+        var list = raw ? JSON.parse(raw) : [];
+        return Array.isArray(list) ? list : [];
+      } catch (e) { return []; }
+    }
+
+    function saveLeaderboardEntry(entry) {
+      try {
+        var list = getLeaderboard();
+        list.push(entry);
+        list.sort(function(a, b) { return b.avg - a.avg; });
+        list = list.slice(0, 20);
+        localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(list));
+        return list;
+      } catch (e) { return getLeaderboard(); }
+    }
+
+    // ================================================================
+    // بخش ۴: توابع کمکی
+    // ================================================================
+    function t(key) {
+      var lang = translations[gameData.lang];
+      return lang[key] || key;
+    }
+
+    function getStatLabel(key) {
+      var labels = translations[gameData.lang].statLabels;
+      return labels[key] || key;
+    }
+
+    // ================================================================
+    // بخش ۵: اعمال ترجمه
+    // ================================================================
+    function applyTranslations() {
+      var lang = gameData.lang;
+      var dir = lang === 'fa' ? 'rtl' : 'ltr';
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dir;
+      document.title = translations[lang].title;
+
+      // جایگزینی متن‌ها
+      var map = {
+        't-brand': 'brand',
+        't-eyebrow': 'eyebrow',
+        't-subtitle': 'subtitle',
+        't-description': 'description',
+        't-stat1': 'stat1',
+        't-stat2': 'stat2',
+        't-stat3': 'stat3',
+        't-startBtn': 'startBtn',
+        't-aboutBtn': 'aboutBtn',
+        't-footerCredit': 'footerCredit',
+        't-step0': 'step0',
+        't-roleTitle': 'roleTitle',
+        't-roleSubtitle': 'roleSubtitle',
+        't-roleEngineer': 'roleEngineer',
+        't-roleEngineerDesc': 'roleEngineerDesc',
+        't-roleManager': 'roleManager',
+        't-roleManagerDesc': 'roleManagerDesc',
+        't-roleDeveloper': 'roleDeveloper',
+        't-roleDeveloperDesc': 'roleDeveloperDesc',
+        't-roleCommunity': 'roleCommunity',
+        't-roleCommunityDesc': 'roleCommunityDesc',
+        't-appName': 'appName',
+        't-yearLabel': 'yearLabel',
+        't-restart': 'restart',
+        't-feedbackTitle': 'feedbackTitle',
+        't-next': 'next',
+        't-yearArrived': 'yearArrived',
+        't-yourTitle': 'yourTitle',
+        't-quote': 'quote',
+        't-playAgain': 'playAgain',
+        't-shareResult': 'shareResult',
+        't-credit': 'credit',
+        't-brand2': 'brand',
+        't-aboutTitle': 'aboutTitle',
+        't-aboutDesc1': 'aboutDesc1',
+        't-aboutDesc2': 'aboutDesc2',
+        't-keyConcepts': 'keyConcepts',
+        't-concept1': 'concept1',
+        't-concept2': 'concept2',
+        't-concept3': 'concept3',
+        't-concept4': 'concept4',
+        't-concept5': 'concept5',
+        't-editionBadge': 'editionBadge',
+        't-nameLabel': 'nameLabel',
+        't-continueBtn': 'continueBtn',
+        't-leaderboardBtn': 'leaderboardBtn',
+        't-leaderboardBtn2': 'leaderboardBtn2',
+        't-certificateBtn': 'certificateBtn',
+        't-leaderboardTitle': 'leaderboardTitle',
+        't-leaderboardDesc': 'leaderboardDesc',
+        't-lbBack': 'lbBack',
+        't-lbClear': 'lbClear',
+        't-howtoTitle': 'howtoTitle',
+        't-howto1Title': 'howto1Title',
+        't-howto1Desc': 'howto1Desc',
+        't-howto2Title': 'howto2Title',
+        't-howto2Desc': 'howto2Desc',
+        't-howto3Title': 'howto3Title',
+        't-howto3Desc': 'howto3Desc',
+        't-howto4Title': 'howto4Title',
+        't-howto4Desc': 'howto4Desc',
+        't-back': 'back',
+        't-comparisonTitle': 'comparisonTitle'
+      };
+
+      for (var id in map) {
+        var el = document.getElementById(id);
+        if (el) {
+          var key = map[id];
+          var value = translations[lang][key];
+          if (value) el.textContent = value;
+        }
+      }
+
+      var nameInputEl = document.getElementById('playerNameInput');
+      if (nameInputEl) nameInputEl.placeholder = translations[lang].namePlaceholder;
+
+      // عنوان‌های خاص با HTML
+      var titleEl = document.getElementById('t-title');
+      if (titleEl) {
+        titleEl.innerHTML = lang === 'fa'
+          ? 'ایران <span>۱۴۱۰</span>'
+          : 'Iran <span>1410</span>';
+      }
+
+      var resultTitleEl = document.getElementById('t-resultTitle');
+      if (resultTitleEl) {
+        resultTitleEl.innerHTML = lang === 'fa'
+          ? 'کارنامه <span>آینده</span>'
+          : 'Future <span>Report Card</span>';
+      }
+    }
+
+    // ================================================================
+    // بخش ۶: اعمال تم
+    // ================================================================
+    function applyTheme() {
+      document.documentElement.setAttribute('data-theme', gameData.theme);
+      var icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.className = gameData.theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      }
+    }
+
+    // ================================================================
+    // بخش ۷: صدا
+    // ================================================================
+    var audioCtx = null;
+    function playSound(type) {
+      if (!gameData.sound) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        var now = audioCtx.currentTime;
+
+        if (type === 'click') {
+          osc.frequency.setValueAtTime(600, now);
+          osc.frequency.exponentialRampToValueAtTime(900, now + 0.1);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+          osc.start(now);
+          osc.stop(now + 0.15);
+        } else if (type === 'select') {
+          osc.frequency.setValueAtTime(400, now);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.15);
+          gain.gain.setValueAtTime(0.06, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === 'achievement') {
+          osc.frequency.setValueAtTime(523, now);
+          osc.frequency.setValueAtTime(659, now + 0.1);
+          osc.frequency.setValueAtTime(784, now + 0.2);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          osc.start(now);
+          osc.stop(now + 0.4);
+        }
+      } catch (e) {}
+    }
+
+    // ================================================================
+    // بخش ۸: اعلان دستاورد
+    // ================================================================
+    function showAchievementToast(name) {
+      var toast = document.createElement('div');
+      toast.className = 'achievement-toast';
+      toast.innerHTML = '<i class="fas fa-trophy" style="color:#fbbf24"></i> ' + t('achievementToast')(name);
+      document.body.appendChild(toast);
+      setTimeout(function() { toast.remove(); }, 4000);
+    }
+
+    // ================================================================
+    // بخش ۹: عناصر DOM
+    // ================================================================
+    var elements = {
+      year: document.getElementById('year'),
+      stats: document.getElementById('stats'),
+      progressBar: document.getElementById('progressBar'),
+      stepLabel: document.getElementById('stepLabel'),
+      qTitle: document.getElementById('qTitle'),
+      qText: document.getElementById('qText'),
+      options: document.getElementById('options'),
+      feedback: document.getElementById('feedback'),
+      feedbackText: document.getElementById('feedbackText'),
+      impactDetail: document.getElementById('impactDetail'),
+      nextBtn: document.getElementById('nextBtn'),
+      stepCounter: document.getElementById('stepCounter'),
+      resultIntro: document.getElementById('resultIntro'),
+      resultStats: document.getElementById('resultStats'),
+      playerTitle: document.getElementById('playerTitle'),
+      achievements: document.getElementById('achievements')
+    };
+
+    // ================================================================
+    // بخش ۱۰: توابع اصلی بازی
+    // ================================================================
+    function showScreen(screenId) {
+      var screens = document.querySelectorAll('.screen');
+      for (var i = 0; i < screens.length; i++) {
+        screens[i].classList.remove('active');
+      }
+      var target = document.getElementById(screenId);
+      if (target) target.classList.add('active');
+    }
+
+    function updateStats() {
+      var stats = gameData.stats;
+      var html = '';
+      for (var key in stats) {
+        var value = stats[key];
+        var cls = value >= 60 ? 'high' : value >= 40 ? 'medium' : 'low';
+        html += '<div class="stat-item">' +
+          '<div class="label">' + getStatLabel(key) + '</div>' +
+          '<div class="value ' + cls + '">' + value + '%</div>' +
+        '</div>';
+      }
+      elements.stats.innerHTML = html;
+    }
+
+    function updateProgress() {
+      var progress = (gameData.step / scenarios.length) * 100;
+      elements.progressBar.style.width = Math.min(progress, 100) + '%';
+      elements.stepCounter.textContent = t('step') + ' ' + (gameData.step + 1) + ' ' + t('of') + ' ' + scenarios.length;
+    }
+
+    function applyEffects(effects) {
+      for (var key in effects) {
+        gameData.stats[key] = Math.max(0, Math.min(100, gameData.stats[key] + effects[key]));
+      }
+    }
+
+    function cloneStats(obj) {
+      var o = {};
+      for (var k in obj) o[k] = obj[k];
+      return o;
+    }
+
+    function showQuestion() {
+      var scenario = scenarios[gameData.step];
+      if (!scenario) {
+        finishGame();
+        return;
+      }
+      var lang = gameData.lang;
+
+      elements.year.textContent = lang === 'fa' ? '۱۴۰' + (scenario.year - 1400) : scenario.year;
+      elements.stepLabel.innerHTML = '<i class="fas fa-flag-checkered"></i> ' + t('step') + ' ' + (gameData.step + 1);
+      elements.qTitle.textContent = scenario.title[lang];
+      elements.qText.textContent = scenario.text[lang];
+
+      var html = '';
+      for (var i = 0; i < scenario.options.length; i++) {
+        html += '<button class="option-btn" data-index="' + i + '">' + scenario.options[i].text[lang] + '</button>';
+      }
+      elements.options.innerHTML = html;
+
+      elements.feedback.classList.add('hidden');
+      elements.nextBtn.classList.add('hidden');
+
+      var btns = elements.options.querySelectorAll('.option-btn');
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].addEventListener('click', selectOption);
+      }
+
+      var backBtnEl = document.getElementById('backBtn');
+      if (backBtnEl) backBtnEl.disabled = gameData.step <= 0;
+
+      updateStats();
+      updateProgress();
+    }
+
+    function selectOption(e) {
+      var btn = e.currentTarget;
+      var index = parseInt(btn.getAttribute('data-index'));
+      var scenario = scenarios[gameData.step];
+      var option = scenario.options[index];
+      var lang = gameData.lang;
+
+      var allBtns = document.querySelectorAll('.option-btn');
+      for (var i = 0; i < allBtns.length; i++) {
+        allBtns[i].classList.remove('selected');
+      }
+      btn.classList.add('selected');
+
+      playSound('select');
+
+      // ثبت وضعیت پیش از اعمال اثر، برای امکان بازگشت به این سؤال
+      gameData.history[gameData.step] = {
+        statsBefore: cloneStats(gameData.stats),
+        achievementsBefore: gameData.achievements.slice(),
+        selectedIndex: index
+      };
+
+      applyEffects(option.effects);
+
+      elements.feedbackText.textContent = option.feedback[lang];
+
+      // جدول مقایسه‌ای اثر همهٔ گزینه‌ها (نه فقط گزینهٔ انتخابی)
+      var compHtml = '';
+      for (var oi = 0; oi < scenario.options.length; oi++) {
+        var opt = scenario.options[oi];
+        var chips = '';
+        for (var key in opt.effects) {
+          var value = opt.effects[key];
+          if (value === 0) continue;
+          chips += '<span class="chip ' + (value > 0 ? 'positive' : 'negative') + '">' +
+            getStatLabel(key) + ' ' + (value > 0 ? '+' : '') + value + '%</span>';
+        }
+        compHtml += '<div class="comparison-row' + (oi === index ? ' chosen' : '') + '">' +
+          '<div class="comparison-label">' + (oi === index ? t('chosenLabel') + ' — ' : '') + opt.text[lang] + '</div>' +
+          '<div class="comparison-chips">' + chips + '</div>' +
+        '</div>';
+      }
+      elements.impactDetail.innerHTML = compHtml;
+
+      elements.feedback.classList.remove('hidden');
+      elements.nextBtn.classList.remove('hidden');
+
+      var btns = elements.options.querySelectorAll('.option-btn');
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].removeEventListener('click', selectOption);
+      }
+
+      checkAchievements();
+      saveProgress();
+    }
+
+    function goBack() {
+      if (gameData.step <= 0) return;
+      var target = gameData.step - 1;
+      var h = gameData.history[target];
+      if (h) {
+        gameData.stats = cloneStats(h.statsBefore);
+        gameData.achievements = h.achievementsBefore.slice();
+      }
+      // تاریخچهٔ این سؤال و سؤال‌های بعد از آن دیگر معتبر نیست چون قرار است دوباره پاسخ داده شود
+      gameData.history.length = target;
+      gameData.step = target;
+      playSound('click');
+      saveProgress();
+      showQuestion();
+    }
+
+    function nextStep() {
+      playSound('click');
+      gameData.step++;
+      if (gameData.step >= scenarios.length) {
+        finishGame();
+      } else {
+        saveProgress();
+        showQuestion();
+      }
+    }
+
+    function finishGame() {
+      clearProgress();
+      showScreen('result');
+      showResult();
+    }
+
+    function computeAverage() {
+      var stats = gameData.stats;
+      var total = 0, count = 0;
+      for (var key in stats) {
+        total += stats[key];
+        count++;
+      }
+      return total / count;
+    }
+
+    function rankTierFromAvg(avg) {
+      if (avg >= 80) return 'S';
+      if (avg >= 68) return 'A';
+      if (avg >= 55) return 'B';
+      return 'C';
+    }
+
+    function showResult() {
+      var stats = gameData.stats;
+      var avg = computeAverage();
+
+      elements.resultIntro.textContent = t('resultIntro')(Math.round(avg));
+
+      var html = '';
+      for (var k in stats) {
+        var value = stats[k];
+        var cls = value >= 60 ? 'high' : value >= 40 ? 'medium' : 'low';
+        html += '<div class="stat-item">' +
+          '<div class="label">' + getStatLabel(k) + '</div>' +
+          '<div class="value ' + cls + '">' + value + '%</div>' +
+        '</div>';
+      }
+      elements.resultStats.innerHTML = html;
+
+      var titles = t('titles');
+      var title = titles.high;
+      if (avg >= 72) title = titles.top;
+      else if (avg >= 58) title = titles.mid;
+      else title = titles.low;
+
+      if (stats.sustainability >= 78) title = stats.sustainability >= 90 ? titles.sustainElite : titles.sustain;
+      if (stats.economy >= 78) title = stats.economy >= 90 ? titles.econElite : titles.econ;
+      if (stats.society >= 78) title = stats.society >= 90 ? titles.socialElite : titles.social;
+      if (stats.energy >= 78) title = stats.energy >= 90 ? titles.energyElite : titles.energy;
+      if (stats.water >= 78) title = stats.water >= 90 ? titles.waterElite : titles.water;
+      if (stats.employment >= 78) title = stats.employment >= 90 ? titles.employElite : titles.employ;
+      if (stats.global >= 78) title = stats.global >= 90 ? titles.globalElite : titles.globalT;
+
+      elements.playerTitle.textContent = title;
+
+      var achList = gameData.achievements;
+      if (achList.length > 0) {
+        var achHtml = '';
+        for (var i = 0; i < achList.length; i++) {
+          achHtml += '<span class="achievement-badge">🏅 ' + t('achievements')[achList[i]] + '</span>';
+        }
+        elements.achievements.innerHTML = achHtml;
+      } else {
+        elements.achievements.innerHTML = '';
+      }
+
+      drawRadarChart(stats);
+
+      if (!gameData.resultSaved) {
+        saveLeaderboardEntry({
+          name: gameData.playerName || (gameData.lang === 'fa' ? 'ناشناس' : 'Anonymous'),
+          avg: Math.round(avg),
+          title: title,
+          rank: rankTierFromAvg(avg),
+          date: new Date().toISOString().slice(0, 10)
+        });
+        gameData.resultSaved = true;
+      }
+
+      createConfetti();
+      playSound('achievement');
+    }
+
+    function checkAchievements() {
+      var stats = gameData.stats;
+      var keys = ['sustainability', 'economy', 'employment', 'energy', 'water', 'society', 'global'];
+      var achKeys = ['green', 'economy', 'employment', 'energy', 'water', 'society', 'global'];
+
+      for (var i = 0; i < keys.length; i++) {
+        if (stats[keys[i]] >= 72 && gameData.achievements.indexOf(achKeys[i]) === -1) {
+          gameData.achievements.push(achKeys[i]);
+          showAchievementToast(t('achievements')[achKeys[i]]);
+          playSound('achievement');
+        }
+      }
+    }
+
+    // ================================================================
+    // بخش ۱۰.۱: نمودار راداری شاخص‌های پایانی (بدون کتابخانه خارجی)
+    // ================================================================
+    function drawRadarChart(stats) {
+      var canvas = document.getElementById('radarChart');
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var keys = ['energy', 'economy', 'water', 'employment', 'sustainability', 'society', 'global'];
+      var w = canvas.width, h = canvas.height;
+      var cx = w / 2, cy = h / 2, radius = Math.min(w, h) / 2 - 50;
+      var n = keys.length;
+      var isLight = gameData.theme === 'light';
+
+      ctx.clearRect(0, 0, w, h);
+
+      // حلقه‌های شبکه
+      ctx.strokeStyle = isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.12)';
+      ctx.fillStyle = isLight ? '#1a202c' : '#e0e6f0';
+      ctx.font = '13px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (var ring = 1; ring <= 4; ring++) {
+        ctx.beginPath();
+        for (var i = 0; i <= n; i++) {
+          var ang = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+          var r = radius * (ring / 4);
+          var px = cx + Math.cos(ang) * r;
+          var py = cy + Math.sin(ang) * r;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+
+      // محورها و برچسب‌ها
+      for (var j = 0; j < n; j++) {
+        var angle = (Math.PI * 2 * j / n) - Math.PI / 2;
+        var ex = cx + Math.cos(angle) * radius;
+        var ey = cy + Math.sin(angle) * radius;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        var lx = cx + Math.cos(angle) * (radius + 28);
+        var ly = cy + Math.sin(angle) * (radius + 28);
+        ctx.fillText(getStatLabel(keys[j]), lx, ly);
+      }
+
+      // چندضلعی داده
+      ctx.beginPath();
+      for (var m = 0; m <= n; m++) {
+        var idx = m % n;
+        var ang2 = (Math.PI * 2 * idx / n) - Math.PI / 2;
+        var val = Math.max(0, Math.min(100, stats[keys[idx]])) / 100;
+        var px2 = cx + Math.cos(ang2) * radius * val;
+        var py2 = cy + Math.sin(ang2) * radius * val;
+        if (m === 0) ctx.moveTo(px2, py2); else ctx.lineTo(px2, py2);
+      }
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(59,130,246,0.28)';
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 2;
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    // ================================================================
+    // بخش ۱۰.۲: تولید گواهی قابل دانلود (Canvas → PNG)
+    // ================================================================
+    function generateCertificate() {
+      var canvas = document.getElementById('certificateCanvas');
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var w = canvas.width, h = canvas.height;
+      var avg = Math.round(computeAverage());
+      var rank = rankTierFromAvg(avg);
+      var name = gameData.playerName || (gameData.lang === 'fa' ? 'شرکت‌کننده' : 'Participant');
+      var title = elements.playerTitle ? elements.playerTitle.textContent : '';
+      var lang = gameData.lang;
+
+      // پس‌زمینه
+      var grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#0a0e1a');
+      grad.addColorStop(1, '#121a30');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // قاب تزئینی
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(30, 30, w - 60, h - 60);
+      ctx.strokeStyle = '#8b5cf6';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(48, 48, w - 96, h - 96);
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#60a5fa';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText(t('certGameName'), w / 2, 150);
+
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = 'bold 52px sans-serif';
+      ctx.fillText(t('certTitle'), w / 2, 240);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '24px sans-serif';
+      ctx.fillText(t('certPlayerLine'), w / 2, 330);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 46px sans-serif';
+      ctx.fillText(name, w / 2, 400);
+
+      ctx.fillStyle = '#e0e6f0';
+      ctx.font = '22px sans-serif';
+      ctx.fillText(t('certScoreLine')(avg), w / 2, 460);
+
+      ctx.font = 'bold 26px sans-serif';
+      ctx.fillStyle = '#34d399';
+      ctx.fillText(title, w / 2, 510);
+
+      // امتیاز و رتبه بزرگ
+      ctx.fillStyle = 'rgba(59,130,246,0.12)';
+      ctx.beginPath();
+      ctx.arc(w / 2, 640, 110, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 70px sans-serif';
+      ctx.fillText(rank, w / 2, 620);
+      ctx.font = '20px sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText(t('certRankLabel') + ' / ' + avg + '%', w / 2, 675);
+
+      ctx.font = '18px sans-serif';
+      ctx.fillStyle = '#475569';
+      ctx.fillText(t('certDateLabel') + ': ' + new Date().toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US'), w / 2, h - 90);
+      ctx.fillText(t('footerCredit'), w / 2, h - 55);
+
+      var dataUrl = canvas.toDataURL('image/png');
+      var link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'iran1410-certificate-' + (gameData.playerName ? gameData.playerName.replace(/\s+/g, '_') : 'player') + '.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // ================================================================
+    // بخش ۱۰.۳: جدول رتبه‌بندی محلی
+    // ================================================================
+    function renderLeaderboard() {
+      var list = getLeaderboard();
+      var container = document.getElementById('leaderboardList');
+      if (!container) return;
+      if (list.length === 0) {
+        container.innerHTML = '<div class="lb-empty">' + t('lbEmpty') + '</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < list.length; i++) {
+        var entry = list[i];
+        html += '<div class="lb-row">' +
+          '<div class="lb-rank">' + (i + 1) + '</div>' +
+          '<div class="lb-name">' + escapeHtml(entry.name) + ' <small style="color:var(--text-muted)">(' + entry.rank + ')</small></div>' +
+          '<div class="lb-score">' + entry.avg + '%</div>' +
+        '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str == null ? '' : String(str);
+      return div.innerHTML;
+    }
+
+    // ================================================================
+    // بخش ۱۱: جلوه‌های بصری
+    // ================================================================
+    function createConfetti() {
+      var container = document.getElementById('confetti');
+      container.innerHTML = '';
+      var colors = ['#ff0000', '#ffffff', '#1a6d3c', '#fbbf24', '#3b82f6', '#8b5cf6', '#f472b6', '#34d399'];
+      for (var i = 0; i < 100; i++) {
+        var c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = (Math.random() * 100) + '%';
+        c.style.width = (Math.random() * 10 + 4) + 'px';
+        c.style.height = (Math.random() * 10 + 4) + 'px';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        c.style.animationDuration = (Math.random() * 4 + 2) + 's';
+        c.style.animationDelay = (Math.random() * 3) + 's';
+        container.appendChild(c);
+      }
+    }
+
+    function createParticles3d() {
+      var container = document.getElementById('particles3d');
+      if (!container) return;
+      container.innerHTML = '';
+      for (var i = 0; i < 50; i++) {
+        var p = document.createElement('div');
+        p.className = 'particle-3d';
+        p.style.left = (Math.random() * 100) + '%';
+        var size = Math.random() * 6 + 3;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.animationDuration = (Math.random() * 20 + 12) + 's';
+        p.style.animationDelay = (Math.random() * 15) + 's';
+        container.appendChild(p);
+      }
+    }
+
+    // ================================================================
+    // بخش ۱۲: رویدادها
+    // ================================================================
+    function initEventListeners() {
+      // تغییر زبان
+      var langBtn = document.getElementById('langToggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', function() {
+          gameData.lang = gameData.lang === 'fa' ? 'en' : 'fa';
+          try { localStorage.setItem('iran1410_lang', gameData.lang); } catch (e) {}
+          applyTranslations();
+
+          // اگر داخل بازی هستیم، سؤال فعلی را دوباره بساز
+          if (document.getElementById('game').classList.contains('active')) {
+            var currentStep = gameData.step;
+            var scenario = scenarios[currentStep];
+            if (scenario) {
+              elements.qTitle.textContent = scenario.title[gameData.lang];
+              elements.qText.textContent = scenario.text[gameData.lang];
+              var btns = elements.options.querySelectorAll('.option-btn');
+              for (var i = 0; i < btns.length; i++) {
+                btns[i].textContent = scenario.options[i].text[gameData.lang];
+              }
+            }
+          }
+          // اگر در صفحه نتیجه هستیم
+          if (document.getElementById('result').classList.contains('active')) {
+            showResult();
+          }
+          playSound('click');
+        });
+      }
+
+      // تغییر تم
+      var themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+          gameData.theme = gameData.theme === 'dark' ? 'light' : 'dark';
+          try { localStorage.setItem('iran1410_theme', gameData.theme); } catch (e) {}
+          applyTheme();
+          playSound('click');
+        });
+      }
+
+      // تغییر صدا
+      var soundBtn = document.getElementById('soundToggle');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', function() {
+          gameData.sound = !gameData.sound;
+          try { localStorage.setItem('iran1410_sound', gameData.sound); } catch (e) {}
+          var icon = document.getElementById('soundIcon');
+          if (icon) {
+            icon.className = gameData.sound ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+          }
+          if (gameData.sound) playSound('click');
+        });
+      }
+
+      // شروع بازی
+      var startBtn = document.getElementById('startBtn');
+      if (startBtn) {
+        startBtn.addEventListener('click', function() {
+          playSound('click');
+          showScreen('role');
+        });
+      }
+
+      // انتخاب نقش
+      var roles = document.querySelectorAll('.role');
+      for (var i = 0; i < roles.length; i++) {
+        roles[i].addEventListener('click', function() {
+          var nameInput = document.getElementById('playerNameInput');
+          var name = nameInput ? nameInput.value.trim() : '';
+          if (!name) {
+            alert(t('namePrompt'));
+            if (nameInput) nameInput.focus();
+            return;
+          }
+          playSound('select');
+          gameData.playerName = name;
+          gameData.role = this.getAttribute('data-role');
+          gameData.step = 0;
+          gameData.stats = {
+            energy: 50, economy: 50, water: 50,
+            employment: 50, sustainability: 50, society: 50, global: 50
+          };
+          gameData.achievements = [];
+          gameData.history = [];
+          gameData.resultSaved = false;
+          saveProgress();
+          showScreen('game');
+          showQuestion();
+        });
+      }
+
+      // دکمه ادامه
+      var nextBtn = document.getElementById('nextBtn');
+      if (nextBtn) nextBtn.addEventListener('click', nextStep);
+
+      // ادامه بازی ذخیره‌شده
+      var continueBtn = document.getElementById('continueBtn');
+      if (continueBtn) {
+        continueBtn.addEventListener('click', function() {
+          var saved = loadProgress();
+          if (!saved) return;
+          gameData.role = saved.role;
+          gameData.step = saved.step;
+          gameData.stats = saved.stats;
+          gameData.achievements = saved.achievements || [];
+          gameData.playerName = saved.playerName || '';
+          gameData.history = saved.history || [];
+          gameData.resultSaved = false;
+          playSound('click');
+          showScreen('game');
+          showQuestion();
+        });
+      }
+
+      // بازگشت به سؤال قبلی
+      var backBtn = document.getElementById('backBtn');
+      if (backBtn) backBtn.addEventListener('click', goBack);
+
+      // جدول رتبه‌بندی از صفحه شروع و صفحه نتیجه
+      var leaderboardBtn = document.getElementById('leaderboardBtn');
+      if (leaderboardBtn) {
+        leaderboardBtn.addEventListener('click', function() {
+          playSound('click');
+          renderLeaderboard();
+          showScreen('leaderboard');
+        });
+      }
+      var viewLeaderboardBtn = document.getElementById('viewLeaderboardBtn');
+      if (viewLeaderboardBtn) {
+        viewLeaderboardBtn.addEventListener('click', function() {
+          playSound('click');
+          renderLeaderboard();
+          showScreen('leaderboard');
+        });
+      }
+      var lbBackBtn = document.getElementById('lbBackBtn');
+      if (lbBackBtn) {
+        lbBackBtn.addEventListener('click', function() {
+          showScreen('start');
+        });
+      }
+      var lbClearBtn = document.getElementById('lbClearBtn');
+      if (lbClearBtn) {
+        lbClearBtn.addEventListener('click', function() {
+          if (confirm(t('confirmClearLb'))) {
+            try { localStorage.removeItem(LEADERBOARD_KEY); } catch (e) {}
+            renderLeaderboard();
+          }
+        });
+      }
+
+      // گواهی پایان بازی
+      var certificateBtn = document.getElementById('certificateBtn');
+      if (certificateBtn) {
+        certificateBtn.addEventListener('click', function() {
+          playSound('click');
+          generateCertificate();
+        });
+      }
+
+      // شروع دوباره
+      var restartBtn = document.getElementById('restartBtn');
+      if (restartBtn) {
+        restartBtn.addEventListener('click', function() {
+          if (confirm(t('confirmRestart'))) {
+            clearProgress();
+            location.reload();
+          }
+        });
+      }
+
+      var againBtn = document.getElementById('againBtn');
+      if (againBtn) {
+        againBtn.addEventListener('click', function() { location.reload(); });
+      }
+
+      // درباره
+      var aboutBtn = document.getElementById('aboutBtn');
+      if (aboutBtn) {
+        aboutBtn.addEventListener('click', function() {
+          var dlg = document.getElementById('aboutDialog');
+          if (dlg && dlg.showModal) dlg.showModal();
+        });
+      }
+
+      var closeAbout = document.getElementById('closeAbout');
+      if (closeAbout) {
+        closeAbout.addEventListener('click', function() {
+          var dlg = document.getElementById('aboutDialog');
+          if (dlg) dlg.close();
+        });
+      }
+
+      // اشتراک‌گذاری
+      var shareBtn = document.getElementById('shareBtn');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+          var title = document.getElementById('playerTitle').textContent;
+          var text = t('shareText')(title);
+          if (navigator.share) {
+            navigator.share({ title: 'Iran 1410', text: text, url: window.location.href }).catch(function() {});
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(text + '\n' + window.location.href).then(function() {
+              alert(t('shareAlert'));
+            }).catch(function() {
+              alert(text);
+            });
+          } else {
+            alert(text);
+          }
+        });
+      }
+
+      // پارالاکس با موس
+      document.addEventListener('mousemove', function(e) {
+        var x = (e.clientX / window.innerWidth - 0.5) * 10;
+        var y = (e.clientY / window.innerHeight - 0.5) * 10;
+        var cubes = document.querySelectorAll('.cube-3d');
+        for (var i = 0; i < cubes.length; i++) {
+          var speed = 1 + i * 0.2;
+          cubes[i].style.transform = 'rotateX(' + (x * speed) + 'deg) rotateY(' + (y * speed) + 'deg)';
+        }
+      });
+    }
+
+    // ================================================================
+    // بخش ۱۳: راه‌اندازی
+    // ================================================================
+    function init() {
+      // اعمال تنظیمات اولیه
+      applyTheme();
+      applyTranslations();
+
+      // ساخت ذرات
+      createParticles3d();
+
+      // تنظیم آیکون صدا
+      var soundIcon = document.getElementById('soundIcon');
+      if (soundIcon) {
+        soundIcon.className = gameData.sound ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+      }
+
+      // ثبت رویدادها
+      initEventListeners();
+
+      // بررسی وجود بازی ذخیره‌شده
+      var savedGame = loadProgress();
+      var continueBtnEl = document.getElementById('continueBtn');
+      if (savedGame && continueBtnEl) {
+        continueBtnEl.classList.remove('hidden');
+      }
+      var nameInputEl = document.getElementById('playerNameInput');
+      if (nameInputEl && savedGame && savedGame.playerName) {
+        nameInputEl.value = savedGame.playerName;
+      }
+
+      // پنهان کردن لودر - بسیار مهم برای اینکه در صفحه اول گیر نکنه
+      var loader = document.getElementById('loader');
+      if (loader) {
+        setTimeout(function() {
+          loader.classList.add('hide');
+          setTimeout(function() {
+            if (loader.parentNode) loader.parentNode.removeChild(loader);
+          }, 500);
+        }, 800);
+      }
+    }
+
+    // اگر DOM آماده است، مستقیم اجرا کن، وگرنه منتظر بمان
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // محافظ اطمینان: بعد از ۳ ثانیه، لودر را به هر قیمتی حذف کن
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      if (loader && loader.parentNode) {
+        loader.classList.add('hide');
+        setTimeout(function() {
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 500);
+      }
+    }, 3000);
+  </script>
+</body>
+</html>
